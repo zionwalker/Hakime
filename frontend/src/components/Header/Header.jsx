@@ -23,16 +23,43 @@ const navLinks = [
         display : 'Contact'
       },
 
-]
+];
+
+
+
 const Header = () => {
-  return <header className="header flex items-center">
+
+  const headerRef = useRef(null)
+ const menuRef = useRef(null)
+
+ const handleStickyHeader = ()=> {
+  window.addEventListener('scroll', ()=>{
+    if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80)
+      {
+        headerRef.current.classList.add('Sticky_header')
+      }
+      else{
+        headerRef.current.classList.remove('Sticky_header')
+      }
+  })
+ }
+
+  useEffect(() =>{
+    handleStickyHeader()
+
+  return()=> window.removeEventListener('scroll', handleStickyHeader)
+  })
+
+  const togglemenu = ()=> menuRef.current.classList.toggle('show_munu')
+  
+  return <header className="header flex items-center" ref={headerRef}>
      <div className="container">
      <div className="flex items-center justify-between">
       <div className="px-12">
         <img src={logo} alt=""/>
       </div>
 
-      <div className="navigation">
+      <div className="navigation" ref={menuRef} onClick={togglemenu}>
         <ul className="menu flex items-center gap-[2.7rem]">
             {
             navLinks.map((link, index) => (
@@ -54,7 +81,7 @@ const Header = () => {
         </ul>
       </div>
 
-      <div className="flex items-center gap-4 px-6">
+      <div className="flex items-center gap-4 px-12">
       <div className="hidden">
         <Link to='/'>
           <figure className="w-[35px] h-[35px] rounded-full cursor-pointer">
@@ -67,7 +94,7 @@ const Header = () => {
         flex items-center justify-center rounded-[50px]">Login</button>
        </Link>
 
-       <span className="md : hidden">
+       <span className="md: hidden" onClick={togglemenu}>
         <BiMenu className="w-6 h-6 cursor-pointer"/>
 
        </span>

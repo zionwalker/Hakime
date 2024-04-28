@@ -1,9 +1,9 @@
 
 import {useEffect, useRef} from "react";
 import user from "../../assets/images/user.png";
-import logo from "../../assets/images/logo.jpg";
-
-import {NavLink, Link} from 'react-router-dom'
+import logo from "../../assets/images/logo.png";
+import { NavLink, Link } from 'react-router-dom';
+import { BiMenu } from "react-icons/bi";
 
 const navLinks = [ 
       {
@@ -28,7 +28,7 @@ const Header = () => {
   return <header className="header flex items-center">
      <div className="container">
      <div className="flex items-center justify-between">
-      <div className="">
+      <div className="px-12">
         <img src={logo} alt=""/>
       </div>
 
@@ -54,8 +54,8 @@ const Header = () => {
         </ul>
       </div>
 
-      <div className="flex items-center gap-4 ">
-      <div>
+      <div className="flex items-center gap-4 px-6">
+      <div className="hidden">
         <Link to='/'>
           <figure className="w-[35px] h-[35px] rounded-full cursor-pointer">
             <img src={user} className="w-full rounded-full" alt="" />
@@ -63,9 +63,14 @@ const Header = () => {
         </Link>
         </div>     
        <Link to='/login'>
-        <button className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] 
+        <button className="bg-purpleColor py-2 px-8 text-white font-[600] h-[44px] 
         flex items-center justify-center rounded-[50px]">Login</button>
        </Link>
+
+       <span className="md : hidden">
+        <BiMenu className="w-6 h-6 cursor-pointer"/>
+
+       </span>
 
       </div>
 

@@ -1,36 +1,36 @@
-import doctorImg01 from "../images/doctor-img01.png";
-import doctorImg02 from "../images/doctor-img02.png";
-import doctorImg03 from "../images/doctor-img03.png";
+import doctorImg01 from "../images/doctor.png";
+import doctorImg02 from "../images/doctor.png";
+import doctorImg03 from "../images/doctor.png";
 
 export const doctors = [
   {
     id: "01",
-    name: "Dr. Alfaz Ahmed",
+    name: "Dr. Abebayehu",
     specialty: "Surgeon",
     avgRating: 4.8,
     totalRating: 272,
     photo: doctorImg01,
     totalPatients: 1500,
-    hospital: "Mount Adora Hospital, Sylhet.",
+    hospital: "minilik.",
   },
   {
     id: "02",
-    name: "Dr. Saleh Mahmud",
+    name: "Dr. zerihun",
     specialty: "Neurologist",
     avgRating: 4.8,
     totalRating: 272,
     photo: doctorImg02,
     totalPatients: 1500,
-    hospital: "Mount Adora Hospital, Sylhet.",
+    hospital: "tikur anbesa.",
   },
   {
     id: "03",
-    name: "Dr. Farid Uddin",
+    name: "Dr. gizachew",
     specialty: "Dermatologist",
     avgRating: 4.8,
     totalRating: 272,
     photo: doctorImg03,
     totalPatients: 1500,
-    hospital: "Mount Adora Hospital, Sylhet.",
+    hospital: "zewditu.",
   },
 ];

@@ -18,6 +18,7 @@ const navLinks = [
         path :'/Services',
         display : 'Service'
       },
+    
       {
         path :'/Contact',
         display : 'Contact'
@@ -90,7 +91,7 @@ const Header = () => {
         </Link>
         </div>     
        <Link to='/login'>
-        <button className="bg-purpleColor py-2 px-8 text-white font-[600] h-[44px] 
+        <button className="bg-irisblueColor px-6 text-white font-[600] h-[44px] 
         flex items-center justify-center rounded-[50px]">Login</button>
        </Link>
 

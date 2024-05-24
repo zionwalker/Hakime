@@ -4,12 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        "primaryColor": "#3B82F6",
+        "primaryColor": "#0067FF",
         "yellowColor": "#F59E0B",
-        "purpleColor": "#7C3AED",
-        "irisblueColor": "#4F46E5",
-        "headingColor": "#374151",
-        "textColor": "#4B5563"
+        "purpleColor": "#9771FF",
+        "irisblueColor": "#01B5C5",
+        "headingColor": "#181A1E",
+        "textColor": "#4E545F",
+        "footerColor": "#d9dce0",
+        
       },
       boxShadow: {
         panelShadow: "rgba( 17, 12, 46, 0.15) 0px 48px 100px 0px;",

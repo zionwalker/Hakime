@@ -15,74 +15,27 @@ import ServiceList from "../components/Services/ServiceList";
 import DoctorList from "../components/Doctors/DoctorList";
 import FaqList from "../components/Faq/FaqList";
 import Blogs from "./../components/Blog/Blogs";
+import Marquee from "react-fast-marquee"
 
 const Home = () => {
   return (
     <>
-      <section className="hero_section pt-[60px] 2xl:h-[800px]">
-        <div className="container">
-          <div className="flex flex-col lg:flex-row gap-[90px] items-center justify-between">
-            <div>
-              <div className="lg:w-[570px]">
-                <h1 className="text-[10px] leading-[20px] text-headingColor font-[600] md:text-[40px] md:leading-[40px] ">
-                  Book Appointment,
-                  <br /> Get treatment.
-                </h1>
-                <p className="text_para">
-                  hello family we care for our patients. we care for our
-                  patients.we care for our patients.we care for our patients.
-                  hello family we care for our patients. we care for our
-                  patients.we care for our patients.we care for our patients.
-                </p>
-                <button className="btn bg-indigo-700 ">Book Now</button>
-              </div>
-              <div
-                className="mt-[30px] lg:mt-[70px] flex flex-col lg:flex-row lg:items-center gap-5
-              lg:gap-[30px]"
-              >
-                <div>
-                  <h2
-                    className="text-[20px] leading-[26px] lg:text-[34px] lg:leading-[54px] font-[400]
-                   text-headingColor"
-                  >
-                    50+
-                  </h2>
-                  <span className="w-[70px] h-2 bg-yellowColor rounded-full block mt-[-14]"></span>
-                  <p className="text_para">Doctors Available</p>
-                </div>
-
-                <div>
-                  <h2
-                    className="text-[20px] leading-[26px] lg:text-[34px] lg:leading-[54px] font-[400]
-                   text-headingColor"
-                  >
-                    2+
-                  </h2>
-                  <span className="w-[70px] h-2 bg-primaryColor rounded-full block mt-[-14]"></span>
-                  <p className="text_para">years on services</p>
-                </div>
-
-                <div>
-                  <h2
-                    className="text-[20px] leading-[26px] lg:text-[34px] lg:leading-[54px] font-[400]
-                   text-headingColor"
-                  >
-                    100%
-                  </h2>
-                  <span className="w-[70px] h-2 bg-purpleColor rounded-full block mt-[-14]"></span>
-                  <p className="text_para">successful</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex gap-[30px] justify-end ">
-              <div>
-                <img className="w-full h-[426px] " src={heroImg01} alt="" />
-              </div>
-              <div className="mt-[30px]">
-                <img src={heroImg02} alt="" className="w-full mb-[10px]" />
-                <img src={heroImg03} alt="" className="w-full" />
-              </div>
+      <section className="hero_section pt-20 2xl:h-[800px] bg-blue-800 flex items-center justify-center">
+        <div className="container flex flex-col lg:flex-row gap-10 items-center justify-between">
+          <div className="max-w-xl">
+            <h1 className="text-3xl lg:text-5xl font-semibold text-white mb-6">
+              Book Appointment, Get treatment.
+            </h1>
+            <p className="text-gray-200 text-lg mb-8">
+              Hello family, we care for our patients. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            <button className="btn bg-indigo-800 text-white px-8 py-3 rounded-lg">Book Now</button>
+          </div>
+          <div className="flex flex-col lg:flex-row gap-6 justify-center items-center">
+            <img src={heroImg01} alt="" className="w-64 lg:w-auto" />
+            <div className="flex flex-col gap-4">
+              <img src={heroImg02} alt="" className="w-40 lg:w-auto" />
+              <img src={heroImg02} alt="" className="w-40 lg:w-auto" />
             </div>
           </div>
         </div>
@@ -104,7 +57,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px]">
             <div className="py-[30px] px-5">
               <div className="flex items-center justify-center">
-                <img src={icon01} alt="" />
+                <img src={icon01} alt="" className="h-40 w-40"/>
               </div>
               <div className="mt-[30px]">
                 <h2 className=" text-[26px] leading-9 text-headingColor font-[500] text-center">
@@ -126,7 +79,7 @@ const Home = () => {
             </div>
             <div className="py-[30px] px-5">
               <div className="flex items-center justify-center">
-                <img src={icon02} alt="" />
+                <img src={icon02} alt="" className="h-40 w-40" />
               </div>
               <div className="mt-[30px]">
                 <h2 className=" text-[26px] leading-9 text-headingColor font-[500] text-center">
@@ -148,7 +101,7 @@ const Home = () => {
             </div>
             <div className="py-[30px] px-5">
               <div className="flex items-center justify-center">
-                <img src={icon03} alt="" />
+                <img src={icon03} alt="" className="h-40 w-40" />
               </div>
               <div className="mt-[30px]">
                 <h2 className=" text-[26px] leading-9 text-headingColor font-[500] text-center">
@@ -173,37 +126,36 @@ const Home = () => {
       </section>
       {/* section ends here */}
 
-      <section>
+      <section className="bg-gray-100 py-20">
         <div className="container">
-          <div className="w-[470px] mx-auto mt-[-50px]">
-            <h2 className="heading text-center"> Our Doctors </h2>
-            <p className="text_para text-center ">
-              hello zedo how are you we are developing the final year you we are
-              developing the final year you we are developing the final year
+          <div className="max-w-xl mx-auto mb-12">
+            <h2 className="text-3xl lg:text-4xl font-semibold text-gray-800 mb-4 text-center">
+              Our Top Doctors
+            </h2>
+            <p className="text-gray-600 text-lg text-center">
+              Hello Zedo! We are developing the final year.
             </p>
           </div>
           <DoctorList />
         </div>
       </section>
 
-      <section>
-        <div className="container">
-          <div className="w-[470px] mx-auto mt-[-55px]">
-            <h2 className="heading text-center">Hakime popular services </h2>
-            <p className="text_para text-center">
-              {" "}
-              hakime provide a comprenssive service for the coustomers ans some
-              of are listed below
-            </p>
-          </div>
-          <ServiceList />
+      <section className="container py-20">
+        <div className="max-w-xl mx-auto mb-12">
+          <h2 className="text-3xl lg:text-4xl font-semibold text-gray-800 mb-4 text-center">
+            Hakime Popular Services
+          </h2>
+          <p className="text-gray-600 text-lg text-center">
+            Hakime provides comprehensive services for customers. Here are some of them.
+          </p>
         </div>
+        <ServiceList />
       </section>
-      <section>
-        <div className="containers">
-          <div className="w-[470px] mx-auto mt-[-30px]"></div>
+
+      <section className="py-12">
+        <Marquee>
           <PartnerSection />
-        </div>
+        </Marquee>
       </section>
       <section>
         <div className="container">

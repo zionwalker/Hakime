@@ -1,145 +1,107 @@
 import React, { useState } from 'react';
 
+const availableTimes = {
+  Monday: ['1:00 PM - 2:00 PM', '2:00 PM - 3:00 PM', '3:00 PM - 4:00 PM'],
+  Thursday: ['2:00 PM - 3:00 PM', '3:00 PM - 4:00 PM', '4:00 PM - 5:00 PM'],
+  Friday: ['3:00 PM - 4:00 PM', '4:00 PM - 5:00 PM', '5:00 PM - 6:00 PM']
+};
+
 const Booking = () => {
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedTime, setSelectedTime] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedDay, setSelectedDay] = useState('');
+  const [selectedTime, setSelectedTime] = useState('');
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const handleOpenModal = () => {
+    setIsOpen(true);
   };
 
-  const handleTimeChange = (time) => {
-    setSelectedTime(time);
+  const handleCloseModal = () => {
+    setIsOpen(false);
+    setSelectedDay('');
+    setSelectedTime('');
   };
 
-  const handleBooking = () => {
-    // Logic for booking appointment
-    console.log("Booking appointment:", selectedDate, selectedTime);
+  const handleDayChange = (e) => {
+    setSelectedDay(e.target.value);
+    setSelectedTime('');
+  };
+
+  const handleTimeChange = (e) => {
+    setSelectedTime(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    console.log('Selected Time:', selectedDay, selectedTime);
+    // Handle the booking logic here
+    handleCloseModal();
   };
 
   return (
-    <div className="timings w-full flex flex-col items-center justify-between mt-8">
-      <div className="dates w-full flex  gap-8">
-        
-        <input type="radio" name="date"   className="hidden"  checked={selectedDate === 'MON'}
-          onChange={() => handleDateChange('MON')}
-          disabled={selectedDate !== null} />
-        <label htmlFor="d1" className="dates-item   w-12 h-400 bg-white text-center flex items-center justify-center flex-col p-2  cursor-pointer   hover:bg-blue-600 border border-gray-500 rounded-lg">
-          <div className="day text-sm">MON</div>
-          <div className="date">12</div>
-        </label>
-        
-        <input type="radio" name="date" id="d1" className="hidden" checked={selectedDate === 'MON'}
-          onChange={() => handleDateChange('tue')}
-          disabled={selectedDate !== null}/>
-        <label htmlFor="d1" className="dates-item w-12 h-400 bg-white text-center flex items-center justify-center flex-col p-2  cursor-pointer border  hover:bg-blue-600 border-gray-500 rounded-lg">
-          <div className="day text-sm">TUE</div>
-          <div className="date">13</div>
-        </label>
-        
-        <input type="radio" name="date" id="d1" defaultChecked className="hidden" checked={selectedDate === 'MON'}
-          onChange={() => handleDateChange('won')}
-          disabled={selectedDate !== null} />
-        <label htmlFor="d1" className="dates-item w-12 h-400 bg-white text-center flex items-center justify-center flex-col p-2  cursor-pointer border hover:bg-blue-600 border-gray-500 rounded-lg">
-          <div className="day text-sm">WON</div>
-          <div className="date">14</div>
-        </label>
-        
-        <input type="radio" name="date" id="d1" defaultChecked className="hidden"checked={selectedDate === 'MON'}
-          onChange={() => handleDateChange('thu')}
-          disabled={selectedDate !== null} />
-        <label htmlFor="d1" className="dates-item w-12 h-400 bg-white text-center flex items-center justify-center flex-col p-2  cursor-pointer border  hover:bg-blue-600 border-gray-500 rounded-lg">
-          <div className="day text-sm">THU</div>
-          <div className="date">14</div>
-        </label>
-        
-        <input type="radio" name="date" id="d1" defaultChecked className="hidden" checked={selectedDate === 'MON'}
-          onChange={() => handleDateChange('fri')}
-          disabled={selectedDate !== null} />
-        <label htmlFor="d1" className="dates-item w-12 h-400 bg-white text-center flex items-center justify-center flex-col p-2  cursor-pointer border  hover:bg-blue-600 border-gray-500 rounded-lg">
-          <div className="day text-sm">FRI</div>
-          <div className="date">15</div>
-        </label>
-        
-        <input type="radio" name="date" id="d1" defaultChecked className="hidden" checked={selectedDate === 'MON'}
-          onChange={() => handleDateChange('sat')}
-          disabled={selectedDate !== null} />
-        <label htmlFor="d1" className="dates-item w-12 h-400 bg-white text-center flex items-center justify-center flex-col p-2  cursor-pointer border  hover:bg-blue-600 border-gray-500 rounded-lg">
-          <div className="day text-sm">SAT</div>
-          <div className="date">16</div>
-        </label>
-        
-        
-        
-        
-        {/* Repeat the same structure for other dates */}
-      </div>
-      <div className="times w-full flex justify-between mt-4">
-        <div className='flex flex-col gap-10'>
-          <div className='flex gap-x-10'>
-        <input type="radio" name="time" id="t1" defaultChecked className="hidden" onChange={() => handleTimeChange('11:00AM')}
-              disabled={selectedTime !== null} />
-        <label htmlFor="t1" className="time text-sm w-fit p-2 bg-white rounded:lg cursor-pointer border hover:bg-blue-600 border-gray-500 rounded-lg">
-          11:00AM
-        </label>
-        <input type="radio" name="time" id="t1" defaultChecked className="hidden" onChange={() => handleTimeChange('11:00AM')}
-              disabled={selectedTime !== null} />
-        <label htmlFor="t1" className="time text-sm w-fit p-2 bg-white rounded:lg cursor-pointer  hover:bg-blue-600 border  border-gray-500 rounded-lg">
-          11:00AM
-        </label>
-        <input type="radio" name="time" id="t1" defaultChecked className="hidden" onChange={() => handleTimeChange('11:00AM')}
-              disabled={selectedTime !== null} />
-        <label htmlFor="t1" className="time text-sm w-fit p-2 bg-white rounded:lg cursor-pointer border  hover:bg-blue-600 border-gray-500 rounded-lg">
-          11:00AM
-        </label>
-        </div >
-        <div className='flex gap-x-10'>
-        <input type="radio" name="time" id="t1" defaultChecked className="hidden" onChange={() => handleTimeChange('11:00AM')}
-              disabled={selectedTime !== null} />
-        <label htmlFor="t1" className="time text-sm w-fit p-2 bg-white rounded:lg cursor-pointer  hover:bg-blue-600 border border-gray-500 rounded-lg">
-          11:00AM
-        </label>
-        <input type="radio" name="time" id="t1" defaultChecked className="hidden" onChange={() => handleTimeChange('11:00AM')}
-              disabled={selectedTime !== null} />
-        <label htmlFor="t1" className="time text-sm w-fit p-2 bg-white rounded:lg cursor-pointer border  hover:bg-blue-600 border-gray-500 rounded-lg">
-          11:00AM
-        </label>
-        <input type="radio" name="time" id="t1" defaultChecked className="hidden" onChange={() => handleTimeChange('11:00AM')}
-              disabled={selectedTime !== null}/>
-        <label htmlFor="t1" className="time text-sm w-fit p-2 bg-white rounded:lg cursor-pointer  hover:bg-blue-600 border border-gray-500 rounded-lg">
-          11:00AM
-        </label>
+    <div>
+      <button
+        className="btn w-full py-2 rounded-md"
+        onClick={handleOpenModal}
+      >
+        Book Now
+      </button>
+
+      {isOpen && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+            <h3 className="text-xl font-semibold mb-4">Select Your Preferred Time</h3>
+
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="day">
+              Day
+            </label>
+            <select
+              id="day"
+              className="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-3 mb-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              value={selectedDay}
+              onChange={handleDayChange}
+            >
+              <option value="">Select a day</option>
+              {Object.keys(availableTimes).map((day) => (
+                <option key={day} value={day}>{day}</option>
+              ))}
+            </select>
+
+            {selectedDay && (
+              <>
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="time">
+                  Time
+                </label>
+                <select
+                  id="time"
+                  className="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-3 mb-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  value={selectedTime}
+                  onChange={handleTimeChange}
+                >
+                  <option value="">Select a time</option>
+                  {availableTimes[selectedDay].map((time) => (
+                    <option key={time} value={time}>{time}</option>
+                  ))}
+                </select>
+              </>
+            )}
+
+            <div className="flex justify-end">
+              <button
+                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2"
+                onClick={handleCloseModal}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                onClick={handleSubmit}
+                disabled={!selectedTime}
+              >
+                Book
+              </button>
+            </div>
+          </div>
         </div>
-       
-        <div className='flex gap-x-10'>
-        <input type="radio" name="time" id="t1" defaultChecked className="hidden" onChange={() => handleTimeChange('11:00AM')}
-              disabled={selectedTime !== null} />
-        <label htmlFor="t1" className="time text-sm w-fit p-2 bg-white rounded:lg cursor-pointer  hover:bg-blue-600 border border-gray-500 rounded-lg">
-          11:00AM
-        </label>
-        <input type="radio" name="time" id="t1" defaultChecked className="hidden" onChange={() => handleTimeChange('11:00AM')}
-              disabled={selectedTime !== null} />
-        <label htmlFor="t1" className="time text-sm w-fit p-2 bg-white rounded:lg cursor-pointer border  hover:bg-blue-600 border-gray-500 rounded-lg">
-          11:00AM
-        </label>
-        <input type="radio" name="time" id="t1" defaultChecked className="hidden" onChange={() => handleTimeChange('11:00AM')}
-              disabled={selectedTime !== null}/>
-        <label htmlFor="t1" className="time text-sm w-fit p-2 bg-white rounded:lg cursor-pointer  hover:bg-blue-600 border border-gray-500 rounded-lg">
-          11:00AM
-        </label>
-        
-      
-    
-      </div>
-      <div style={{ margin: '10px' }}>
-        <button className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded"
-        onClick={handleBooking}
-        disabled={selectedDate === null || selectedTime === null}>
-          Book Appointment
-        </button>
-      </div>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

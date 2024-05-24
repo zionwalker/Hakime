@@ -7,7 +7,6 @@ const Partner = ({ name, logo }) => {
     className="partner-card partner-logo"
     src={logo}
     alt={name}
-    whileHover={{ scale: 1.1 }}
     whileTap={{ scale: 0.9 }}
   />
   

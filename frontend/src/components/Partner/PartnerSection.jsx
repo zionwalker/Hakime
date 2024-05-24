@@ -11,6 +11,7 @@ import doctorImg08 from "../../assets/images/health8.png";
 import doctorImg09 from "../../assets/images/health9.png";
 
 
+
 const partners = [
   { name: 'WHO', logo: doctorImg03 },
   { name: 'EDC', logo: doctorImg02 },
@@ -21,9 +22,13 @@ const partners = [
   { name: 'WHO', logo: doctorImg07 }, 
   { name: 'EDC', logo: doctorImg08 },
   { name: 'Hakim', logo: doctorImg09 },
-  { name: 'Arada Hospital', logo: doctorImg01 },
-  { name: 'Tikur Anbessa Hospital', logo: doctorImg02 },
-  { name: 'Minilik Hospital', logo: doctorImg03 }
+  { name: 'WHO', logo: doctorImg03 },
+  { name: 'EDC', logo: doctorImg02 },
+  { name: 'Hakim', logo: doctorImg01 },
+  { name: 'Arada Hospital', logo: doctorImg04 },
+  { name: 'Tikur Anbessa Hospital', logo: doctorImg05 },
+  
+
 ];
 
 const PartnerSection = () => {

@@ -120,7 +120,7 @@ const Header = () => {
                         My Profile
                       </button>
                       <button className="block w-full text-left text-sm font-semibold py-2 px-4 text-gray-800 hover:bg-gray-200">
-                        Appointments
+                        Appointment
                       </button>
                       <button
                         onClick={handleLogout}

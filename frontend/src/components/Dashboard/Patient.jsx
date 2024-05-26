@@ -18,11 +18,9 @@ const Patient = () => {
           throw new Error('Failed to fetch patients');
         }
         const data = await response.json();
-
-        // Log the fetched data to see its structure
         console.log('Fetched data:', data);
 
-        // Assuming the fetched data is an array of patients
+        
         setPatients(data);
       } catch (err) {
         setError(err.message);
@@ -35,7 +33,6 @@ const Patient = () => {
   }, []);
 
   const viewProfile = (patientId) => {
-    // Implement your logic for viewing the patient profile
     console.log(`Viewing profile for patient ID: ${patientId}`);
   };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import heroImg01 from "../assets/images/heroImg01.png";
+import featureImg1 from "../assets/images/feature.png";
 import heroImg02 from "../assets/images/heroImg02.png";
 import heroImg03 from "../assets/images/heroImg02.png";
 import icon01 from "../assets/images/icon01.png";
@@ -32,11 +32,8 @@ const Home = () => {
             <button className="btn bg-indigo-800 text-white px-8 py-3 rounded-lg">Book Now</button>
           </div>
           <div className="flex flex-col lg:flex-row gap-6 justify-center items-center">
-            <img src={heroImg01} alt="" className="w-64 lg:w-auto" />
-            <div className="flex flex-col gap-4">
-              <img src={heroImg02} alt="" className="w-40 lg:w-auto" />
-              <img src={heroImg02} alt="" className="w-40 lg:w-auto" />
-            </div>
+            <img src={featureImg1} alt="" className="h-[430px] lg:w-auto" />
+           
           </div>
         </div>
       </section>
@@ -47,11 +44,9 @@ const Home = () => {
         <div className="container">
           <div className="lg:w-[450px] mx-auto">
             <h2 className="heading text-center">
-              Provding the best medical services
-            </h2>
+            Proving the best Service in country            </h2>
             <p className="text_para text-center">
-              standard care for every hakime, it is your home standard care for
-              every hakime, it is your home and gve and take the best
+            get insitant service from us just
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px]">

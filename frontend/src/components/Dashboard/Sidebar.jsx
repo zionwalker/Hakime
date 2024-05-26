@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../pages/AuthContext";
 import {
   FaTachometerAlt,
   FaUserMd,
@@ -11,6 +12,20 @@ import {
 } from "react-icons/fa";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      console.log("User logged out");
+      navigate("/home"); 
+    } catch (error) {
+      console.error("Logout error:", error);
+      
+    }
+  };
+
   return (
     <div className="bg-gray-800 text-white w-64 min-h-screen flex flex-col">
       <div className="p-6">
@@ -64,7 +79,10 @@ const Sidebar = () => {
         </ul>
       </nav>
       <div className="p-6">
-        <button className="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded transition duration-200">
+        <button
+          onClick={handleLogout}
+          className="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded transition duration-200"
+        >
           Logout
         </button>
       </div>

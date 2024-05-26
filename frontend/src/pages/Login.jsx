@@ -1,4 +1,3 @@
-// Login.jsx
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
@@ -29,17 +28,21 @@ const Login = () => {
     try {
       const response = await axios.post(
         "http://localhost:3000/auth/login",
-        formData
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
       const { token, role } = response.data;
       login(token);
-      localStorage.setItem("userRole", role); // Store user role in local storage
-      toast.success("Welcome to Hakime!");
+      localStorage.setItem("userRole", role); 
       setTimeout(() => {
         navigate("/home");
-      }, 3000);
+      }, 100);
     } catch (error) {
-      console.error("Error logging in user:", error.message);
+      console.error("Error logging in user:", error);
       toast.error("Login failed. Please try again.");
     }
   };

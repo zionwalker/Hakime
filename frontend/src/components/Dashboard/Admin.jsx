@@ -9,6 +9,7 @@ import Patient from './Patient';
 import Request from './Request';
 import Balance from './Balance';
 import Setting from './Setting';
+import DoctorDetail from './DoctorDetail';
 
 const Admin = () => {
   return (
@@ -20,11 +21,12 @@ const Admin = () => {
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/doctors" element={<AllDoctor />} />
-            <Route path="/admin/messages" element={<Message />} />
+            <Route path="/admin/message" element={<Message />} />
             <Route path="/patients" element={<Patient />} />
             <Route path="/admin/requests" element={<Request />} />
             <Route path="/admin/balance" element={<Balance />} />
             <Route path="/admin/settings" element={<Setting />} />
+            <Route path="/doctors/:id" element={<DoctorDetail />} />
           </Routes>
         </main>
       </div>

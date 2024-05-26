@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
+import { useNavigate } from 'react-router-dom';
 
 const AllDoctor = () => {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await fetch('http://localhost:3000/Admin/getAllDoctor', {
+        const response = await fetch('http://localhost:3000/admin/getAllDoctor', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           }
@@ -19,10 +21,8 @@ const AllDoctor = () => {
         }
         const data = await response.json();
 
-        // Log the fetched data to see its structure
         console.log('Fetched data:', data);
 
-        // Assuming the fetched data is an array of doctors
         setDoctors(data);
       } catch (err) {
         setError(err.message);
@@ -35,9 +35,9 @@ const AllDoctor = () => {
   }, []);
 
   const viewProfile = (doctorId) => {
-    // Implement your logic for viewing the profile
-    console.log(`Viewing profile for doctor ID: ${doctorId}`);
-  };
+    navigate(`${doctorId}/DocctorDetail`); 
+};
+
 
   if (loading) {
     return <div>Loading...</div>;
@@ -66,7 +66,7 @@ const AllDoctor = () => {
               <TableCell>{doctor.id}</TableCell>
               <TableCell>{doctor.User.name}</TableCell>
               <TableCell>{doctor.User.email}</TableCell>
-              <TableCell>{doctor.address ? doctor.address : 'not yet'}</TableCell>
+              <TableCell>{doctor.address || 'not yet'}</TableCell>
               <TableCell>{doctor.status}</TableCell>
               <TableCell>
                 <Button variant="contained" color="primary" onClick={() => viewProfile(doctor.id)}>View Profile</Button>

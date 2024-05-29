@@ -5,21 +5,25 @@ import { useParams } from 'react-router-dom';
 const DoctorDetail = () => {
   const { id } = useParams();
   const [doctor, setDoctor] = useState(null);
+  const token = localStorage.getItem('token'); // Retrieve token from local storage
 
   useEffect(() => {
     const fetchDoctor = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/admin/getDoctor/${id}`);
+        const response = await axios.get(`http://localhost:3000/admin/getDoctor/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include token in request headers
+          },
+        });
         const doctorData = response.data;
 
-        
         if (doctorData.image) {
-          const base64String = Buffer.from(doctorData.image.data).toString('base64');
+          const base64String = await convertBinaryToBase64(doctorData.image.data);
           doctorData.image = `data:image/jpeg;base64,${base64String}`;
         }
 
         if (doctorData.Id_Image) {
-          const base64String = Buffer.from(doctorData.Id_Image.data).toString('base64');
+          const base64String = await convertBinaryToBase64(doctorData.Id_Image.data);
           doctorData.Id_Image = `data:image/jpeg;base64,${base64String}`;
         }
 
@@ -31,71 +35,66 @@ const DoctorDetail = () => {
     };
 
     fetchDoctor();
-  }, [id]);
+  }, [id, token]); // Add token to dependency array
+
+  const convertBinaryToBase64 = (binaryData) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = error => reject(error);
+      reader.readAsDataURL(new Blob([binaryData]));
+    });
+  };
 
   if (!doctor) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Doctor Details</h1>
-      <div className="bg-white shadow-md rounded p-6 mb-4">
-        <h2 className="text-xl font-semibold">Personal Information</h2>
-        <p><strong>Date of Birth:</strong> {new Date(doctor.date_of_birth).toLocaleDateString()}</p>
-        <p><strong>Gender:</strong> {doctor.gender}</p>
-        <p><strong>Nationality:</strong> {doctor.nationality}</p>
-        <p><strong>Address:</strong> {doctor.address}</p>
-        {doctor.image && <img src={doctor.image} alt="Doctor" className="w-32 h-32" />}
-        <p><strong>Bio:</strong> {doctor.Bio}</p>
-      </div>
-
-      <div className="bg-white shadow-md rounded p-6 mb-4">
-        <h2 className="text-xl font-semibold">Professional Information</h2>
-        <p><strong>Medical Degrees:</strong> {doctor.medical_degrees || 'N/A'}</p>
-        <p><strong>Medical School:</strong> {doctor.medical_school || 'N/A'}</p>
-        <p><strong>Year of Graduation:</strong> {doctor.year_of_graduation || 'N/A'}</p>
-        <p><strong>Specialization:</strong> {doctor.specialization || 'N/A'}</p>
-      </div>
-
-      <div className="bg-white shadow-md rounded p-6 mb-4">
-        <h2 className="text-xl font-semibold">Specialization Information</h2>
-        <p><strong>Medical License Number:</strong> {doctor.medical_license_number || 'N/A'}</p>
-        <p><strong>Hourly Rate:</strong> {doctor.hourly_rate || 'N/A'}</p>
-        <p><strong>Certificate:</strong> {doctor.certificate || 'N/A'}</p>
-        <p><strong>Previous Work Experience:</strong> {doctor.previous_work_experience || 'N/A'}</p>
-        {doctor.cv && <a href={`data:application/pdf;base64,${doctor.cv}`} download="CV.pdf">Download CV</a>}
-      </div>
-
-      <div className="bg-white shadow-md rounded p-6 mb-4">
-        <h2 className="text-xl font-semibold">Identification Documents and Language Proficiency</h2>
-        <p><strong>Passport or National ID No:</strong> {doctor.passport_or_national_id_no || 'N/A'}</p>
-        <p><strong>Language Spoken:</strong> {doctor.language_spoken || 'N/A'}</p>
-        <p><strong>Proficiency Level:</strong> {doctor.proficiency_level || 'N/A'}</p>
-        {doctor.Id_Image && <img src={doctor.Id_Image} alt="ID" className="w-32 h-32" />}
-      </div>
-
-      <div className="bg-white shadow-md rounded p-6 mb-4">
-        <h2 className="text-xl font-semibold">State</h2>
-        <p><strong>Status:</strong> {doctor.status}</p>
-        <p><strong>Step:</strong> {doctor.step}</p>
-      </div>
-
-      <div className="bg-white shadow-md rounded p-6 mb-4">
-        <h2 className="text-xl font-semibold">Schedule Information</h2>
-        {doctor.Schedules.length > 0 ? doctor.Schedules.map((schedule) => (
-          <p key={schedule.id}>Schedule ID: {schedule.id}</p>
-        )) : <p>No schedules available.</p>}
-      </div>
-
-      <div className="bg-white shadow-md rounded p-6 mb-4">
-        <h2 className="text-xl font-semibold">Reviews</h2>
-        {doctor.Reviews.length > 0 ? doctor.Reviews.map((review, index) => (
-          <div key={index}>
-            <p><strong>Review:</strong> {review.review_text}</p>
-            <p><strong>Rating:</strong> {review.rating}</p>
+    <div className="container mx-auto mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white shadow-md rounded-lg overflow-hidden">
+          <div className="px-6 py-4">
+            <h1 className="text-3xl font-semibold text-gray-800">Doctor Details</h1>
           </div>
-        )) : <p>No reviews available.</p>}
+          <div className="px-6 py-4">
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">Personal Information</h2>
+            <p>Date of Birth: {new Date(doctor.date_of_birth).toLocaleDateString()}</p>
+            <p>Gender: {doctor.gender}</p>
+            <p>Nationality: {doctor.nationality}</p>
+            <p>Address: {doctor.address}</p>
+            {doctor.image && <img src={doctor.image} alt="Doctor" className="mt-4 rounded-lg" />}
+            <p className="mt-4">Bio: {doctor.Bio}</p>
+          </div>
+          <div className="px-6 py-4">
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">Professional Information</h2>
+            <p>Medical Degrees: {doctor.medical_degrees}</p>
+            <p>Medical School: {doctor.medical_school}</p>
+            <p>Year of Graduation: {doctor.year_of_graduation}</p>
+            <p>Specialization: {doctor.specialization}</p>
+          </div>
+        </div>
+        <div className="bg-white shadow-md rounded-lg overflow-hidden">
+          <div className="px-6 py-4">
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">Specialization Information</h2>
+            <p>Medical License Number: {doctor.medical_license_number}</p>
+            <p>Hourly Rate: {doctor.hourly_rate}</p>
+            <p>Previous Work Experience: {doctor.previous_work_experience}</p>
+            {doctor.cv && <a href={`data:application/pdf;base64,${doctor.cv}`} download="CV.pdf" className="text-blue-500 hover:underline">Download CV</a>}
+          </div>
+          <div className="px-6 py-4">
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">Identification Documents and Language Proficiency</h2>
+            <p>Passport or National ID No: {doctor.passport_or_national_id_no}</p>
+            <p>Language Spoken: {doctor.language_spoken}</p>
+            <p>Proficiency Level: {doctor.proficiency_level}</p>
+            {doctor.Id_Image && <img src={doctor.Id_Image} alt="ID" className="mt-4 rounded-lg" />}
+          </div>
+          <div className="px-6 py-4">
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">State</h2>
+            <p>Status: {doctor.status}</p>
+            <p>Step: {doctor.step}</p>
+          </div>
+        </div>
       </div>
     </div>
   );

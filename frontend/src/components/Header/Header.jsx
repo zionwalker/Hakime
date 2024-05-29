@@ -112,13 +112,15 @@ const Header = () => {
                     src={user}
                     alt="User"
                     className="w-[40px] h-[40px] rounded-full cursor-pointer"
-                    onClick={toggleUserMenu} // Toggle user profile dropdown
+                    onClick={toggleUserMenu} 
                   />
                   {isDropdownOpen && (
                     <div className="absolute right-0 top-[55px] bg-white border border-gray-200 shadow-lg rounded-lg p-2">
+                      <Link to="/Doctors/DoctorProfile">
                       <button className="block w-full text-left text-sm font-semibold py-2 px-4 text-gray-800 hover:bg-gray-200">
                         My Profile
                       </button>
+                      </Link>
                       <button className="block w-full text-left text-sm font-semibold py-2 px-4 text-gray-800 hover:bg-gray-200">
                         Appointment
                       </button>

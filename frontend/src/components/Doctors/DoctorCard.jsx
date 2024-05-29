@@ -12,55 +12,47 @@ const DoctorCard = ({ doctor }) => {
     totalPatients,
     hospital,
   } = doctor;
+  
   return (
-    <div className="p-3 lg:p-5">
-      <div>
-        <img src={photo} className=" h-30 w-30 " alt="" />
+    <div className="p-3 lg:p-5 bg-white rounded-lg shadow-md flex flex-col justify-between">
+      <div className="relative w-full h-44 lg:h-52">
+        <div className="bg-gray-200 rounded-full w-28 h-28 lg:w-36 lg:h-36 absolute top-0 left-0 right-0 bottom-0 m-auto overflow-hidden">
+          <img src={photo} className="object-cover w-full h-full rounded-full" alt={name} />
+        </div>
       </div>
-      <h2 className="text-[16px] leading-[30px] lg:text-[26px] lg:leading-9 text-headingColor font-[600] mt lg:mt-5">
-        {name}
-      </h2>
-      <div className="mt-2 lg:mt-4 flex items-center justify-between">
-        <span
-          className="bg-[#41793a] text-white py-1 px-2 lg:py-2 lg:px-6 text-[12px] 
-        leading-4 lg:text-[16px] lg:leading-7 font-semibold rounded"
-        >
+      <div className="mt-4 lg:mt-6">
+        <h2 className="text-lg lg:text-xl font-semibold text-headingColor">
+          {name}
+        </h2>
+        <span className="text-sm lg:text-base bg-primaryColor text-white py-1 px-2 lg:px-4 rounded-full mt-1 inline-block">
           {specialty}
         </span>
-        <div className="flex items-center gap-[6px]">
-          <span className="flex items-center gap-[6px] text-[14px] leading-6 lg:text-[16px] lg:leading-7 font-semibold text-headingColor">
-            <img src={startIcon} alt=""  />
+      </div>
+      <div className="mt-2 flex items-center justify-between">
+        <div className="flex items-center">
+          <img src={startIcon} alt="Star Icon" className="w-4 h-4 mr-1 lg:mr-2" />
+          <span className="text-sm lg:text-base font-semibold text-headingColor">
             {avgRating}
           </span>
-          <span
-            className="text-[14px] leading-6 lg:text-[16px] gap-lg:leading-7
-            font-[600] text-textColor"
-          >
+          <span className="text-sm lg:text-base ml-1 lg:ml-2 text-gray-600">
             ({totalRating})
           </span>
         </div>
-      </div>
-
-      <div className="mt-[18px] lg:mt-5 flex items-center justify-between">
         <div>
-            <h3 className="text-[16px] leading-7 lg:text-[18px] lg:left-[30px] font-semibold
-             text-headingColor">
-                +{totalPatients} patients
-
-            </h3>
-            <p className="text-[14px] leading-6 font-[400] text-textColor"> 
+          <span className="text-sm lg:text-base font-semibold text-headingColor">
+            +{totalPatients} patients
+          </span>
+          <p className="text-sm lg:text-base text-gray-600">
             At {hospital}
-            </p>
+          </p>
         </div>
-        <Link
-                  to="/Doctors"
-                  className="w-[35px] h-[35px] rounded-full border border-solid border-[#181A1E]
-                flex items-center justify-center group hover:bg-primaryColor hover:border-none"
-                >
-                  <BsArrowRight className="group hover:text-white w-5 h-4" />
-                </Link>
-
       </div>
+      <Link
+        to="/Doctors"
+        className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center mt-4 hover:bg-primaryColor hover:text-white transition duration-300"
+      >
+        <BsArrowRight className="w-4 h-4" />
+      </Link>
     </div>
   );
 };

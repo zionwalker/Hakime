@@ -13,6 +13,16 @@ export const doctors = [
     hospital: "minilik.",
   },
   {
+    id: "03",
+    name: "Dr. Abebayehu",
+    specialty: "Surgeon",
+    avgRating: 4.8,
+    totalRating: 272,
+    photo: doctorImg01,
+    totalPatients: 1500,
+    hospital: "minilik.",
+  },
+  {
     id: "02",
     name: "Dr. Abebayehu",
     specialty: "Surgeon",
@@ -22,6 +32,15 @@ export const doctors = [
     totalPatients: 1500,
     hospital: "minilik.",
   },
-  
+  {
+    id: "05",
+    name: "Dr. Abebayehu",
+    specialty: "Surgeon",
+    avgRating: 4.8,
+    totalRating: 272,
+    photo: doctorImg01,
+    totalPatients: 1500,
+    hospital: "minilik.",
+  },
  
 ];

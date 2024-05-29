@@ -53,7 +53,7 @@ const Sidebar = () => {
             </Link>
           </li>
           <li className="px-4 py-2 hover:bg-gray-700 rounded transition duration-200">
-            <Link to="/admin/messages" className="flex items-center">
+            <Link to="/admin/chat" className="flex items-center">
               <FaEnvelope className="inline mr-3" />
               <span>Messages</span>
             </Link>

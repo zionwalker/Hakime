@@ -15,7 +15,7 @@ import ServiceList from "../components/Services/ServiceList";
 import DoctorList from "../components/Doctors/DoctorList";
 import FaqList from "../components/Faq/FaqList";
 import Blogs from "./../components/Blog/Blogs";
-import Marquee from "react-fast-marquee"
+import Marquee from "react-fast-marquee";
 
 const Home = () => {
   return (
@@ -27,92 +27,94 @@ const Home = () => {
               Book Appointment, Get treatment.
             </h1>
             <p className="text-gray-200 text-lg mb-8">
-              Hello family, we care for our patients. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Hello family, we care for our patients. Lorem ipsum dolor sit
+              amet, consectetur adipiscing elit. Sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua.
             </p>
-            <button className="btn bg-indigo-800 text-white px-8 py-3 rounded-lg">Book Now</button>
+            <button className="btn bg-indigo-800 text-white px-8 py-3 rounded-lg">
+              Book Now
+            </button>
           </div>
           <div className="flex flex-col lg:flex-row gap-6 justify-center items-center">
             <img src={featureImg1} alt="" className="h-[430px] lg:w-auto" />
-           
           </div>
         </div>
       </section>
 
       {/* hero section ends here*/}
 
-      <section>
-        <div className="container">
+      <section className=" bg-slate-200 py-12">
+        <div className="container mx-auto">
           <div className="lg:w-[450px] mx-auto">
-            <h2 className="heading text-center">
-            Proving the best Service in country            </h2>
-            <p className="text_para text-center">
-            get insitant service from us just
+            <h2 className="text-3xl lg:text-4xl font-semibold text-gray-700 mb-3 text-center">
+              Providing the Best Services
+            </h2>
+            <p className="text-lg text-center text-gray-600 mt-7">
+              Get instant access to premium services from us.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px]">
-            <div className="py-[30px] px-5">
-              <div className="flex items-center justify-center">
-                <img src={icon01} alt="" className="h-40 w-40"/>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-12 mt-12">
+            <div className="py-8 px-6 bg-white rounded-lg shadow-lg">
+              <div className="flex items-center justify-center mb-6">
+                <img src={icon01} alt="Find Doctors" className="h-24 w-24" />
               </div>
-              <div className="mt-[30px]">
-                <h2 className=" text-[26px] leading-9 text-headingColor font-[500] text-center">
-                  Find doctors
+              <div>
+                <h2 className="text-xl font-semibold text-center text-gray-800">
+                  Find Doctors
                 </h2>
-                <p className="text-[15px] leading-7 text-textColor font-[400] mt-4 text-center">
-                  standard care for every hakime, it is your home standard care
-                  for every hakime, it is your home standard care for every
-                  hakime.
+                <p className="text-base text-center text-gray-600 mt-2">
+                  Find the right healthcare professional for your needs,
+                  ensuring quality care every time.
                 </p>
                 <Link
                   to="/Doctors"
-                  className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E]
-               mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
+                  className="w-12 h-12 rounded-full border border-gray-400 border-solid mt-4 mx-auto flex items-center justify-center bg-white text-gray-800 hover:bg-primaryColor hover:text-white transition duration-300"
                 >
-                  <BsArrowRight className="group hover:text-white w-6 h-5" />
+                  <BsArrowRight className="w-6 h-6" />
                 </Link>
               </div>
             </div>
-            <div className="py-[30px] px-5">
-              <div className="flex items-center justify-center">
-                <img src={icon02} alt="" className="h-40 w-40" />
+            <div className="py-8 px-6 bg-white rounded-lg shadow-lg">
+              <div className="flex items-center justify-center mb-6">
+                <img src={icon02} alt="Find Location" className="h-24 w-24" />
               </div>
-              <div className="mt-[30px]">
-                <h2 className=" text-[26px] leading-9 text-headingColor font-[500] text-center">
+              <div>
+                <h2 className="text-xl font-semibold text-center text-gray-800">
                   Find Location
                 </h2>
-                <p className="text-[15px] leading-7 text-textColor font-[400] mt-4 text-center">
-                  standard care for every hakime, it is your home standard care
-                  for every hakime, it is your home standard care for every
-                  hakime.
+                <p className="text-base text-center text-gray-600 mt-2">
+                  Locate healthcare facilities near you with ease, ensuring
+                  access to convenient care.
                 </p>
                 <Link
-                  to="/Doctors"
-                  className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E]
-               mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
+                  to="/Locations"
+                  className=" w-12 h-12 rounded-full border border-gray-400 border-solid mt-4 mx-auto flex items-center justify-center bg-white text-gray-800 hover:bg-primaryColor hover:text-white transition duration-300"
                 >
-                  <BsArrowRight className="group hover:text-white w-6 h-5" />
+                  <BsArrowRight className="w-6 h-6" />
                 </Link>
               </div>
             </div>
-            <div className="py-[30px] px-5">
-              <div className="flex items-center justify-center">
-                <img src={icon03} alt="" className="h-40 w-40" />
+            <div className="py-8 px-6 bg-white rounded-lg shadow-lg">
+              <div className="flex items-center justify-center mb-6">
+                <img
+                  src={icon03}
+                  alt="Book Appointment"
+                  className="h-24 w-24"
+                />
               </div>
-              <div className="mt-[30px]">
-                <h2 className=" text-[26px] leading-9 text-headingColor font-[500] text-center">
+              <div>
+                <h2 className="text-xl font-semibold text-center text-gray-800">
                   Book Appointment
                 </h2>
-                <p className="text-[15px] leading-7 text-textColor font-[400] mt-4 text-center">
-                  standard care for every hakime, it is your home standard care
-                  for every hakime, it is your home standard care for every
-                  hakime.
+                <p className="text-base text-center text-gray-600 mt-2">
+                  Schedule appointments hassle-free, ensuring timely access to
+                  healthcare services.
                 </p>
                 <Link
-                  to="/Doctors/DoctorDetails"
-                  className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E]
-               mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
+                  to="/Appointments"
+                  className=" w-12 h-12 rounded-full border border-gray-400 border-solid mt-4 mx-auto flex items-center justify-center bg-white text-gray-800 hover:bg-primaryColor hover:text-white transition duration-300"
                 >
-                  <BsArrowRight className="group hover:text-white w-6 h-5" />
+                  <BsArrowRight className="w-6 h-6" />
                 </Link>
               </div>
             </div>
@@ -122,13 +124,14 @@ const Home = () => {
       {/* section ends here */}
 
       <section className="bg-gray-100 py-20">
-        <div className="container">
-          <div className="max-w-xl mx-auto mb-12">
-            <h2 className="text-3xl lg:text-4xl font-semibold text-gray-800 mb-4 text-center">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto mb-12">
+            <h2 className="text-3xl lg:text-4xl font-semibold text-gray-800 mb-3 text-center">
               Our Top Doctors
             </h2>
-            <p className="text-gray-600 text-lg text-center">
-              Hello Zedo! We are developing the final year.
+            <p className="text-lg text-center text-gray-600">
+              Welcome to our platform! We are dedicated to providing the best
+              healthcare solutions.
             </p>
           </div>
           <DoctorList />
@@ -141,7 +144,8 @@ const Home = () => {
             Hakime Popular Services
           </h2>
           <p className="text-gray-600 text-lg text-center">
-            Hakime provides comprehensive services for customers. Here are some of them.
+            Hakime provides comprehensive services for customers. Here are some
+            of them.
           </p>
         </div>
         <ServiceList />
@@ -184,19 +188,19 @@ const Home = () => {
         </div>
       </section>
       {/*<About />*/}
-      
-      
-        <div className="container ">
-          <div className="w-3/4 mx-auto">
-            <h2 className="heading text-center text-[35px] text-textColor font-[600]"> Latest Blogs </h2>
-            <p className="text-[19px] leading-[24px] text-textColor text-center mt-4 mb-4 ">
-              Explore Articles
-            </p>
-          </div>
-          <Blogs />
+
+      <div className="container ">
+        <div className="w-3/4 mx-auto">
+          <h2 className="heading text-center text-[35px] text-textColor font-[600]">
+            {" "}
+            Latest Blogs{" "}
+          </h2>
+          <p className="text-[19px] leading-[24px] text-textColor text-center mt-4 mb-4 ">
+            Explore Articles
+          </p>
         </div>
-    
-      
+        <Blogs />
+      </div>
 
       {/*<section>
         <div className="container">

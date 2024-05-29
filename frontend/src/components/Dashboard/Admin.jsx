@@ -4,9 +4,9 @@ import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 import Dashboard from './Dashboard';
 import AllDoctor from './AllDoctor';
-import Message from './Message';
+import Chat from './Chat';
 import Patient from './Patient';
-import Request from './Request';
+import NotApprovedDoctors from './NotApprovedDoctors';
 import Balance from './Balance';
 import Setting from './Setting';
 import DoctorDetail from './DoctorDetail';
@@ -21,11 +21,11 @@ const Admin = () => {
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/doctors" element={<AllDoctor />} />
-            <Route path="/admin/message" element={<Message />} />
+            <Route path="/chat" element={<Chat />} />
             <Route path="/patients" element={<Patient />} />
-            <Route path="/admin/requests" element={<Request />} />
-            <Route path="/admin/balance" element={<Balance />} />
-            <Route path="/admin/settings" element={<Setting />} />
+            <Route path="/requests" element={<NotApprovedDoctors />} />
+            <Route path="/balance" element={<Balance />} />
+            <Route path="/settings" element={<Setting />} />
             <Route path="/doctors/:id" element={<DoctorDetail />} />
           </Routes>
         </main>

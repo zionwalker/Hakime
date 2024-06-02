@@ -10,6 +10,8 @@ import NotApprovedDoctors from './NotApprovedDoctors';
 import Balance from './Balance';
 import Setting from './Setting';
 import DoctorDetail from './DoctorDetail';
+import AdminArticleForm from './AdminArticleForm';
+import AllArticle from './AllArticle';
 
 const Admin = () => {
   return (
@@ -26,7 +28,9 @@ const Admin = () => {
             <Route path="/requests" element={<NotApprovedDoctors />} />
             <Route path="/balance" element={<Balance />} />
             <Route path="/settings" element={<Setting />} />
+            <Route path="/article" element={<AdminArticleForm />}/>
             <Route path="/doctors/:id" element={<DoctorDetail />} />
+            <Route path="/allarticle" element={<AllArticle />}/>
           </Routes>
         </main>
       </div>

@@ -65,6 +65,12 @@ const Sidebar = () => {
             </Link>
           </li>
           <li className="px-4 py-2 hover:bg-gray-700 rounded transition duration-200">
+            <Link to="/admin/article" className="flex items-center">
+              <FaClipboardList className="inline mr-3" />
+              <span>Post Article</span>
+            </Link>
+          </li>
+          <li className="px-4 py-2 hover:bg-gray-700 rounded transition duration-200">
             <Link to="/admin/balance" className="flex items-center">
               <FaWallet className="inline mr-3" />
               <span>Balance</span>
@@ -74,6 +80,12 @@ const Sidebar = () => {
             <Link to="/admin/settings" className="flex items-center">
               <FaCog className="inline mr-3" />
               <span>Settings</span>
+            </Link>
+          </li>
+          <li className="px-4 py-2 hover:bg-gray-700 rounded transition duration-200">
+            <Link to="/admin/allarticle" className="flex items-center">
+              <FaCog className="inline mr-3" />
+              <span>allarticle</span>
             </Link>
           </li>
         </ul>

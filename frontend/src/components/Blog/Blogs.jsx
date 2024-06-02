@@ -1,71 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import BlogCard from './BlogCard';
-import doctorImg07 from "../../assets/images/health7.png";
-import doctorImg08 from "../../assets/images/health8.png";
-import doctorImg09 from "../../assets/images/health9.png";
 
 const Blogs = () => {
-  const blogs = [
-    {
-      title: 'Hakime is getting more recognition',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      date: 'April 20, 2024',
-      imageUrl: doctorImg09,
-    },
-    {
-      title: 'Another Awesome Blog Post about Hakime',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      date: 'April 15, 2024',
-      imageUrl: doctorImg08,
-    },
-    {
-      title: 'Another Awesome Blog Post about Hakime',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      date: 'April 15, 2024',
-      imageUrl: doctorImg08,
-    },
-    {
-      title: 'Another Awesome Blog Post about Hakime',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      date: 'April 15, 2024',
-      imageUrl: doctorImg08,
-    },
-  ];
+  const [blogs, setBlogs] = useState([]);
 
-  const [startIndex, setStartIndex] = useState(0);
-  const blogsToShow = [
-    blogs[(startIndex + 0) % blogs.length],
-    blogs[(startIndex + 1) % blogs.length],
-    blogs[(startIndex + 2) % blogs.length]
-  ];
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/admin/getallpost', {
+          headers: {
+          'Content-Type': 'multipart/form-data',
+         
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          
+        },
+      });
+        
+      console.log(response.data);
+        setBlogs(response.data);
+      } catch (error) {
+        console.error('Error fetching blog posts:', error);
+      }
+    };
 
-  const handleNext = () => {
-    setStartIndex((startIndex + 1) % blogs.length);
-  };
-
-  const handlePrevious = () => {
-    setStartIndex((startIndex - 1 + blogs.length) % blogs.length);
-  };
+    fetchPosts();
+  }, []);
 
   return (
     <div>
       <div className="flex flex-wrap -mx-4">
-        <div className="w-full md:w-1/2 lg:w-1/3 px-4 mb-4">
-        
-          <BlogCard title={blogsToShow[0].title} content={blogsToShow[0].content} date={blogsToShow[0].date} imageUrl={blogsToShow[0].imageUrl} />
-        </div>
-        <div className="w-full md:w-1/2 lg:w-1/3 px-4 mb-4">
-         
-          <BlogCard title={blogsToShow[1].title} content={blogsToShow[1].content} date={blogsToShow[1].date} imageUrl={blogsToShow[1].imageUrl} />
-        </div>
-        <div className="w-full md:w-1/2 lg:w-1/3 px-4 mb-4">
-          
-          <BlogCard title={blogsToShow[2].title} content={blogsToShow[2].content} date={blogsToShow[2].date} imageUrl={blogsToShow[2].imageUrl} />
-        </div>
-      </div>
-      <div className="flex justify-center mt-4">
-      
-       
+        {blogs.map((blog) => (
+          <div key={blog._id} className="w-full md:w-1/2 lg:w-1/3 px-4 mb-4">
+            <BlogCard title={blog.title} subtitle={blog.sub_title} content={blog.content}  imageUrl={`http://localhost:3000/${blog.image}`} />
+          </div>
+        ))}
       </div>
     </div>
   );

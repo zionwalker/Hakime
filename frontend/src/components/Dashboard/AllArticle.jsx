@@ -5,11 +5,11 @@ const AllArticle = () => {
   const [expandedArticleIndex, setExpandedArticleIndex] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentArticle, setCurrentArticle] = useState({
-    id: '',
-    title: '',
-    sub_title: '',
-    content: '',
-    image: ''
+    id: "",
+    title: "",
+    sub_title: "",
+    content: "",
+    image: "",
   });
 
   useEffect(() => {
@@ -17,8 +17,8 @@ const AllArticle = () => {
       try {
         const response = await fetch("http://localhost:3000/admin/getAllpost", {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          }
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         });
         if (!response.ok) {
           throw new Error("Failed to fetch data");
@@ -40,16 +40,16 @@ const AllArticle = () => {
   const deleteArticle = async (id) => {
     try {
       const response = await fetch(`http://localhost:3000/admin/posts/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-        }
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       });
       if (!response.ok) {
-        throw new Error('Failed to delete article');
+        throw new Error("Failed to delete article");
       }
       // Filter out the deleted article from the state
-      setArticles(articles.filter(article => article.id !== id));
+      setArticles(articles.filter((article) => article.id !== id));
     } catch (error) {
       console.error("Error deleting article:", error);
     }
@@ -66,28 +66,35 @@ const AllArticle = () => {
 
   const handleEditChange = (e) => {
     const { name, value } = e.target;
-    setCurrentArticle(prevArticle => ({
+    setCurrentArticle((prevArticle) => ({
       ...prevArticle,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:3000/admin/posts/${currentArticle.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-        },
-        body: JSON.stringify(currentArticle)
-      });
+      const response = await fetch(
+        `http://localhost:3000/admin/posts/${currentArticle.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(currentArticle),
+        }
+      );
       if (!response.ok) {
-        throw new Error('Failed to update article');
+        throw new Error("Failed to update article");
       }
       const updatedArticle = await response.json();
-      setArticles(articles.map(article => (article.id === updatedArticle.id ? updatedArticle : article)));
+      setArticles(
+        articles.map((article) =>
+          article.id === updatedArticle.id ? updatedArticle : article
+        )
+      );
       closeModal();
     } catch (error) {
       console.error("Error updating article:", error);
@@ -97,6 +104,13 @@ const AllArticle = () => {
   return (
     <>
       <div className="max-w-6xl mx-auto mt-10">
+        <div class="text-headingColor justify-center">
+          <h3 class="text-headingColor text-center text-[30px] leading-3 font-semibold">
+            Hakime Posts
+          </h3>
+          <hr class="mt-6 shadow-sm bg-orange-200 py-1 rounded-md w-1/6 mx-auto" />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center">
           {/* Render articles */}
           {articles.map((article, index) => (
@@ -115,9 +129,15 @@ const AllArticle = () => {
               {/* Render article title */}
               <h3 className="text-lg font-bold mb-1">{article.title}</h3>
               {/* Render article subtitle */}
-              <h4 className="text-md font-semibold mb-1">{article.sub_title}</h4>
+              <h4 className="text-md font-semibold mb-1">
+                {article.sub_title}
+              </h4>
               {/* Render article content */}
-              <p className={`text-sm mb-2 ${expandedArticleIndex === index ? '' : 'line-clamp-3'}`}>
+              <p
+                className={`text-sm mb-2 ${
+                  expandedArticleIndex === index ? "" : "line-clamp-3"
+                }`}
+              >
                 {article.content}
               </p>
               {/* Read more/less button */}
@@ -126,7 +146,7 @@ const AllArticle = () => {
                   onClick={() => toggleExpansion(index)}
                   className="text-blue-500 hover:underline mb-1"
                 >
-                  {expandedArticleIndex === index ? 'Read Less' : 'Read More'}
+                  {expandedArticleIndex === index ? "Read Less" : "Read More"}
                 </button>
                 {/* Edit and Delete buttons */}
                 <button
@@ -145,7 +165,9 @@ const AllArticle = () => {
             </div>
           ))}
           {/* Placeholder content when no articles available */}
-          {articles.length === 0 && <p className="text-center text-gray-600">No articles available</p>}
+          {articles.length === 0 && (
+            <p className="text-center text-gray-600">No articles available</p>
+          )}
         </div>
       </div>
 

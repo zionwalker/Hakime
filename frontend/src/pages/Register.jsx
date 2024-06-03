@@ -26,13 +26,10 @@ const Register = () => {
       const response = await axios.post('http://localhost:3000/auth/register', formData);
       console.log('User registered successfully:', response.data);
       
-      // Store token if needed
-      localStorage.setItem('token', response.data.token);
 
-      // Show success message
       toast.success('Registered successfully!', {
         position: "top-center",
-        autoClose: 3000, // 3 seconds
+        autoClose: 2000, // 3 seconds
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -49,7 +46,7 @@ const Register = () => {
       console.error('Error registering user:', error.message);
       toast.error('Registration failed. Please try again.', {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

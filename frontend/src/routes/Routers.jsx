@@ -9,6 +9,7 @@ import Doctors from '../pages/Doctors/Doctors';
 import DoctorDetails from '../pages/Doctors/DoctorDetails';
 import DashboardPage from '../pages/Dashboard';
 import Admin from '../components/Dashboard/Admin';
+import DoctorProfileCompletion from '../pages/Doctors/DoctorProfileForm';
 
 const Routers = () => {
   return (
@@ -21,8 +22,10 @@ const Routers = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/services" element={<Services />} />
+      <Route path="/doctors/completeprofile" element= {<DoctorProfileCompletion />}/> 
       <Route path="/dashboard/*" element={<DashboardPage />} />
       <Route path="/admin/*" element={<Admin />} />
+      
     </Routes>
   );
 };

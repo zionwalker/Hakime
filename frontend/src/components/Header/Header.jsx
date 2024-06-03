@@ -52,9 +52,9 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleStickyHeader);
   }, []);
 
-  const toggleUserMenu = () => setIsDropdownOpen(!isDropdownOpen); // Toggle user profile dropdown
+  const toggleUserMenu = () => setIsDropdownOpen(!isDropdownOpen); 
 
-  const toggleMobileMenu = () => setIsMenuOpen(!isMenuOpen); // Toggle mobile menu
+  const toggleMobileMenu = () => setIsMenuOpen(!isMenuOpen); 
 
   const closeMenus = () => {
     setIsDropdownOpen(false);
@@ -77,6 +77,15 @@ const Header = () => {
 
   const handleMobileMenuClick = () => {
     toggleMobileMenu();
+  };
+
+  const getProfileLink = () => {
+    if (userRole === "doctor") {
+      return "/doctors/completeprofile";
+    } else if (userRole === "patient") {
+      return "/patients/patientprofile";
+    }
+    return "/home"; 
   };
 
   return (
@@ -116,10 +125,10 @@ const Header = () => {
                   />
                   {isDropdownOpen && (
                     <div className="absolute right-0 top-[55px] bg-white border border-gray-200 shadow-lg rounded-lg p-2">
-                      <Link to="/Doctors/DoctorProfile">
-                      <button className="block w-full text-left text-sm font-semibold py-2 px-4 text-gray-800 hover:bg-gray-200">
-                        My Profile
-                      </button>
+                      <Link to={getProfileLink()}>
+                        <button className="block w-full text-left text-sm font-semibold py-2 px-4 text-gray-800 hover:bg-gray-200">
+                          My Profile
+                        </button>
                       </Link>
                       <button className="block w-full text-left text-sm font-semibold py-2 px-4 text-gray-800 hover:bg-gray-200">
                         Appointment
@@ -159,25 +168,23 @@ const Header = () => {
       </div>
       
       {isMenuOpen && (
-  <div className="mobile-menu absolute  top-[100%] bg-white shadow-lg p-4 md:hidden w-[fit] left-100">
-    <ul className="flex flex-col">
-      {navLinks.map((link, index) => (
-        <li key={index}>
-          <NavLink
-            to={link.path}
-            activeClassName="text-primaryColor text-[16px] leading-7 font-[600]"
-            className="text-textColor text-[16px] leading-7 font-[500] hover:text-primaryColor"
-            onClick={closeMenus} 
-          >
-            {link.display}
-          </NavLink>
-        </li>
-      ))}
-    </ul>
-  </div>
-)}
-
-
+        <div className="mobile-menu absolute top-[100%] bg-white shadow-lg p-4 md:hidden w-[fit] left-100">
+          <ul className="flex flex-col">
+            {navLinks.map((link, index) => (
+              <li key={index}>
+                <NavLink
+                  to={link.path}
+                  activeClassName="text-primaryColor text-[16px] leading-7 font-[600]"
+                  className="text-textColor text-[16px] leading-7 font-[500] hover:text-primaryColor"
+                  onClick={closeMenus} 
+                >
+                  {link.display}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </header>
   );
 };

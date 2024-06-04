@@ -16,6 +16,7 @@ import DoctorList from "../components/Doctors/DoctorList";
 import FaqList from "../components/Faq/FaqList";
 import Blogs from "./../components/Blog/Blogs";
 import Marquee from "react-fast-marquee";
+import LatestDoctors from "./Doctors/LatestDoctors";
 
 const Home = () => {
   return (
@@ -134,7 +135,7 @@ const Home = () => {
               healthcare solutions.
             </p>
           </div>
-          <DoctorList />
+          <LatestDoctors />
         </div>
       </section>
 

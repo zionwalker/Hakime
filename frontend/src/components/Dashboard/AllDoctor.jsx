@@ -66,7 +66,7 @@ const AllDoctor = () => {
               <TableCell>{doctor.id}</TableCell>
               <TableCell>{doctor.User.name}</TableCell>
               <TableCell>{doctor.User.email}</TableCell>
-              <TableCell>{doctor.address || 'not yet'}</TableCell>
+              <TableCell>{doctor.address}</TableCell>
               <TableCell>{doctor.status}</TableCell>
               <TableCell>
                 <Button variant="contained" color="primary" onClick={() => viewProfile(doctor.id)}>View Profile</Button>

@@ -35,7 +35,7 @@ const NotApprovedDoctors = () => {
   }, []);
 
   const viewProfile = (doctorId) => {
-    navigate(`/doctor/${doctorId}`); 
+    navigate(`/not-approved-doctor/${doctorId}`); 
   };
 
   if (loading) {

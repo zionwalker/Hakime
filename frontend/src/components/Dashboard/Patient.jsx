@@ -52,8 +52,8 @@ const Patient = () => {
             <TableCell>ID</TableCell>
             <TableCell>Name</TableCell>
             <TableCell>Email</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell>Role</TableCell>
+            <TableCell>Phone Number</TableCell>
+            <TableCell>Image</TableCell>
             <TableCell>Actions</TableCell>
           </TableRow>
         </TableHead>
@@ -63,8 +63,8 @@ const Patient = () => {
               <TableCell>{patient.id}</TableCell>
               <TableCell>{patient.User.name}</TableCell>
               <TableCell>{patient.User.email}</TableCell>
-              <TableCell>{patient.status}</TableCell>
-              <TableCell>{patient.role ? patient.role : 'Default Role'}</TableCell>
+              <TableCell>{patient.User.phone_number}</TableCell>
+              <TableCell>{patient.image}</TableCell>
               <TableCell>
                 <Button variant="contained" color="primary" onClick={() => viewProfile(patient.id)}>View Profile</Button>
               </TableCell>

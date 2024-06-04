@@ -34,7 +34,7 @@ const Dashboard = () => {
         setNotApprovedDoctors(doctorsResponse.data.notApproved);
 
         setTotalUsers(totalPatients + totalDoctors);
-        setTotalRequests(doctorsResponse.data.approved + doctorsResponse.data.notApproved);
+        setTotalRequests(doctorsResponse.data.notApproved);
       } catch (error) {
         setError(error.message);
         console.error('Error fetching data:', error.response || error.message || error);

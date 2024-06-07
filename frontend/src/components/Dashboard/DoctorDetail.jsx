@@ -5,14 +5,14 @@ import { useParams } from 'react-router-dom';
 const DoctorDetail = () => {
   const { id } = useParams();
   const [doctor, setDoctor] = useState(null);
-  const token = localStorage.getItem('token'); // Retrieve token from local storage
+  const token = localStorage.getItem('token'); 
 
   useEffect(() => {
     const fetchDoctor = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/admin/getDoctor/${id}`, {
           headers: {
-            Authorization: `Bearer ${token}`, // Include token in request headers
+            Authorization: `Bearer ${token}`, 
           },
         });
         const doctorData = response.data;
@@ -35,7 +35,7 @@ const DoctorDetail = () => {
     };
 
     fetchDoctor();
-  }, [id, token]); // Add token to dependency array
+  }, [id, token]); 
 
   const convertBinaryToBase64 = (binaryData) => {
     return new Promise((resolve, reject) => {

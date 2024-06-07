@@ -35,7 +35,24 @@ const NotApprovedDoctors = () => {
   }, []);
 
   const viewProfile = (doctorId) => {
-    navigate(`/doctor/${doctorId}`); 
+    navigate(`/admin/doctors/${doctorId}`);
+  };
+
+  const approveDoctor = async (doctorId) => {
+    try {
+      const response = await fetch(`http://localhost:3000/admin/approveDoctor/${doctorId}`, {
+        method: 'PATCH',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        }
+      });
+      if (!response.ok) {
+        throw new Error('Failed to approve doctor');
+      }
+      setDoctors(doctors.map(doc => doc.id === doctorId ? { ...doc, status: 'Approved' } : doc));
+    } catch (err) {
+      console.error('Error approving doctor:', err);
+    }
   };
 
   if (loading) {
@@ -68,7 +85,20 @@ const NotApprovedDoctors = () => {
               <TableCell>{doctor.address || 'N/A'}</TableCell>
               <TableCell>{doctor.status}</TableCell>
               <TableCell>
-                <Button variant="contained" color="primary" onClick={() => viewProfile(doctor.id)}>View Profile</Button>
+              <button 
+                  className="bg-blue-500 text-white py-1 px-3 rounded transition duration-300 ease-in-out hover:bg-blue-600 transform hover:-translate-y-1"
+                  onClick={() => viewProfile(doctor.id)}
+                >
+                  View Profile
+                </button>
+                <Button 
+                  variant="contained" 
+                  color="secondary" 
+                  onClick={() => approveDoctor(doctor.id)}
+                  style={{ marginLeft: '10px' }}
+                >
+                  Approve
+                </Button>
               </TableCell>
             </TableRow>
           ))}

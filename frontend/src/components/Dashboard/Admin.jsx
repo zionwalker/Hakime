@@ -12,6 +12,9 @@ import Setting from './Setting';
 import DoctorDetail from './DoctorDetail';
 import AdminArticleForm from './AdminArticleForm';
 import AllArticle from './AllArticle';
+import FirstAidForm from './FirstAidForm';
+import AllFirstAid from './AllFirstAid';
+
 
 const Admin = () => {
   return (
@@ -29,8 +32,10 @@ const Admin = () => {
             <Route path="/balance" element={<Balance />} />
             <Route path="/settings" element={<Setting />} />
             <Route path="/article" element={<AdminArticleForm />}/>
+            <Route path="/firstaids" element={< FirstAidForm />}/>
             <Route path="/doctors/:id" element={<DoctorDetail />} />
             <Route path="/allarticle" element={<AllArticle />}/>
+            <Route path="/allfirstaid" element={<AllFirstAid />}/>
           </Routes>
         </main>
       </div>

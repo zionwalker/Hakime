@@ -12,7 +12,7 @@ const navLinks = [
     display: "Home",
   },
   {
-    path: "/Doctors",
+    path: "/FindDoctors",
     display: "Find Doctors",
   },
   {
@@ -62,7 +62,7 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("userRole");
+    localStorage.removeItem("token");
     logout();
     navigate("/home");
   };

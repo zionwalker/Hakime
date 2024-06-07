@@ -16,6 +16,7 @@ import DoctorList from "../components/Doctors/DoctorList";
 import FaqList from "../components/Faq/FaqList";
 import Blogs from "./../components/Blog/Blogs";
 import Marquee from "react-fast-marquee";
+import LatestDoctors from "./Doctors/LatestDoctors";
 
 const Home = () => {
   return (
@@ -134,7 +135,7 @@ const Home = () => {
               healthcare solutions.
             </p>
           </div>
-          <DoctorList />
+          <LatestDoctors />
         </div>
       </section>
 
@@ -188,6 +189,22 @@ const Home = () => {
         </div>
       </section>
       {/*<About />*/}
+      
+      <section>
+        <div className="container">
+          <div className="flex justify-between gap-[50px] lg:gap-0">
+            <div className="w-1/2 hidden md:block">
+              <img src={faqImg} alt="" className="w-[340px] mt-[-35px]" />
+            </div>
+            <div className="w-full md:w-1/2 ]">
+              <h2 className="heading">
+                Most Asked Questions 
+              </h2>
+              <FaqList />
+            </div>
+          </div>
+        </div>
+  </section>
 
       <div className="container ">
         <div className="w-3/4 mx-auto">
@@ -202,21 +219,6 @@ const Home = () => {
         <Blogs />
       </div>
 
-      {/*<section>
-        <div className="container">
-          <div className="flex justify-between gap-[50px] lg:gap-0">
-            <div className="w-1/2 hidden md:block">
-              <img src={faqImg} alt="" className="w-[340px] mt-[-35px]" />
-            </div>
-            <div className="w-full md:w-1/2 ]">
-              <h2 className="heading">
-                Most Asked Questions
-              </h2>
-              <FaqList />
-            </div>
-          </div>
-        </div>
-  </section>*/}
     </>
   );
 };

@@ -5,10 +5,12 @@ import {
   FaTachometerAlt,
   FaUserMd,
   FaUserInjured,
-  FaEnvelope,
-  FaClipboardList,
-  FaWallet,
+  FaListAlt,
+  FaPlus,
+  FaEye,
   FaCog,
+  FaWallet,
+  FaSignOutAlt,
 } from "react-icons/fa";
 
 const Sidebar = () => {
@@ -19,10 +21,9 @@ const Sidebar = () => {
     try {
       await logout();
       console.log("User logged out");
-      navigate("/home"); 
+      navigate("/home");
     } catch (error) {
       console.error("Logout error:", error);
-      
     }
   };
 
@@ -53,21 +54,33 @@ const Sidebar = () => {
             </Link>
           </li>
           <li className="px-4 py-2 hover:bg-gray-700 rounded transition duration-200">
-            <Link to="/admin/chat" className="flex items-center">
-              <FaEnvelope className="inline mr-3" />
-              <span>Messages</span>
-            </Link>
-          </li>
-          <li className="px-4 py-2 hover:bg-gray-700 rounded transition duration-200">
             <Link to="/admin/requests" className="flex items-center">
-              <FaClipboardList className="inline mr-3" />
+              <FaListAlt className="inline mr-3" />
               <span>Requests</span>
             </Link>
           </li>
           <li className="px-4 py-2 hover:bg-gray-700 rounded transition duration-200">
             <Link to="/admin/article" className="flex items-center">
-              <FaClipboardList className="inline mr-3" />
+              <FaPlus className="inline mr-3" />
               <span>Post Article</span>
+            </Link>
+          </li>
+          <li className="px-4 py-2 hover:bg-gray-700 rounded transition duration-200">
+            <Link to="/admin/firstaids" className="flex items-center">
+              <FaPlus className="inline mr-3" />
+              <span>Post First Aid</span>
+            </Link>
+          </li>
+          <li className="px-4 py-2 hover:bg-gray-700 rounded transition duration-200">
+            <Link to="/admin/allfirstaid" className="flex items-center">
+              <FaEye className="inline mr-3" />
+              <span>All First Aid</span>
+            </Link>
+          </li>
+          <li className="px-4 py-2 hover:bg-gray-700 rounded transition duration-200">
+            <Link to="/admin/allarticle" className="flex items-center">
+              <FaEye className="inline mr-3" />
+              <span>All Article</span>
             </Link>
           </li>
           <li className="px-4 py-2 hover:bg-gray-700 rounded transition duration-200">
@@ -82,12 +95,6 @@ const Sidebar = () => {
               <span>Settings</span>
             </Link>
           </li>
-          <li className="px-4 py-2 hover:bg-gray-700 rounded transition duration-200">
-            <Link to="/admin/allarticle" className="flex items-center">
-              <FaCog className="inline mr-3" />
-              <span>allarticle</span>
-            </Link>
-          </li>
         </ul>
       </nav>
       <div className="p-6">
@@ -95,6 +102,7 @@ const Sidebar = () => {
           onClick={handleLogout}
           className="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded transition duration-200"
         >
+          <FaSignOutAlt className="inline mr-3" />
           Logout
         </button>
       </div>

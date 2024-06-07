@@ -104,21 +104,21 @@ const Dashboard = () => {
     <div className="container mx-auto p-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-4">
         {/* Cards */}
-        <div className="bg-white p-6 shadow rounded-lg">
-          <h3 className="text-xl font-semibold mb-4">Total Users</h3>
-          <p className="text-gray-700 text-4xl">{totalUsers}</p>
+        <div className="bg-green-400 p-6 shadow rounded-lg">
+          <h3 className="text-white text-xl font-semibold mb-4">Total Users</h3>
+          <p className="text-white text-4xl">{totalUsers}</p>
         </div>
-        <div className="bg-white p-6 shadow rounded-lg">
-          <h3 className="text-xl font-semibold mb-4">Total Patients</h3>
-          <p className="text-gray-700 text-4xl">{totalPatients}</p>
+        <div className="bg-blue-400 p-6 shadow rounded-lg">
+          <h3 className=" text-white text-xl font-semibold mb-4">Total Patients</h3>
+          <p className="text-white text-4xl">{totalPatients}</p>
         </div>
-        <div className="bg-white p-6 shadow rounded-lg">
-          <h3 className="text-xl font-semibold mb-4">Total Doctors</h3>
-          <p className="text-gray-700 text-4xl">{totalDoctors}</p>
+        <div className="bg-red-300 p-6 shadow rounded-lg">
+          <h3 className="text-white text-xl font-semibold mb-4">Total Doctors</h3>
+          <p className="text-white text-4xl">{totalDoctors}</p>
         </div>
-        <div className="bg-white p-6 shadow rounded-lg">
-          <h3 className="text-xl font-semibold mb-4">Total Requests</h3>
-          <p className="text-gray-700 text-4xl">{totalRequests}</p>
+        <div className="bg-indigo-400 p-6 shadow rounded-lg">
+          <h3 className="text-white text-xl font-semibold mb-4">Total Requests</h3>
+          <p className="text-white text-4xl">{totalRequests}</p>
         </div>
       </div>
 

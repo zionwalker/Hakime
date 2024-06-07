@@ -62,7 +62,7 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("userRole");
+    localStorage.removeItem("token");
     logout();
     navigate("/home");
   };

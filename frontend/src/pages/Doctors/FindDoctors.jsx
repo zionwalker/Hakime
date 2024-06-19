@@ -8,17 +8,10 @@ const FindDoctor = () => {
     <section className="bg-gray-200">
         <div className="container text-center">
           <h2 className="text-[30px] font-[600] leading-2 text-headingColor">Find a Doctor</h2>
-          <div className="max-w-[540px] mt-[30px] mx-auto bg-[#0066ff2c] rounded-md flex items-center justify-between">
-            <input
-              type="search"
-              className="py-4 pl-4 pr-2 bg-transparent w-full focus:outline-none cursor-pointer bg-white placeholder:text-textColor"
-              placeholder="Search for Doctor"
-            />
-            <button className="btn mt-0 rou-[2px]  ">Search</button>
-          </div>
+        
         </div>
       </section>
-      <section className="bg-gray-100">
+      <section className="bg-gray-200">
         <div className="container mt-[-60px]">
         <AllDoctors />
         </div>

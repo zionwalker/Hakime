@@ -15,7 +15,7 @@ const AllArticle = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/admin/getAllpost", {
+        const response = await fetch("https://hakime-mongodb-3.onrender.com/admin/getAllpost", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -39,7 +39,7 @@ const AllArticle = () => {
 
   const deleteArticle = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/admin/posts/${id}`, {
+      const response = await fetch(`https://hakime-mongodb-3.onrender.com/admin/posts/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -76,7 +76,7 @@ const AllArticle = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:3000/admin/posts/${currentArticle.id}`,
+        `https://hakime-mongodb-3.onrender.com/admin/posts/${currentArticle.id}`,
         {
           method: "PUT",
           headers: {
@@ -121,7 +121,7 @@ const AllArticle = () => {
               {/* Render article image */}
               <div className="relative h-48 overflow-hidden rounded-md mb-2">
                 <img
-                  src={`http://localhost:3000/${article.image}`} // Article image
+                  src={`https://hakime-mongodb-3.onrender.com/${article.image}`} // Article image
                   alt={article.title}
                   className="w-full h-full object-cover"
                 />

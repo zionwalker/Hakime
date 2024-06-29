@@ -18,7 +18,7 @@ const AllFirstAid = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/admin/getAllFirstAid');
+                const response = await axios.get('https://hakime-mongodb-3.onrender.com/admin/getAllFirstAid');
                 setFirstAidData(response.data);
                 setLoading(false);
             } catch (error) {
@@ -44,7 +44,7 @@ const AllFirstAid = () => {
 
     const confirmDelete = async () => {
         try {
-            await axios.delete(`http://localhost:3000/admin/first_aids/${selectedItem.id}`);
+            await axios.delete(`https://hakime-mongodb-3.onrender.com/admin/first_aids/${selectedItem.id}`);
             setFirstAidData(firstAidData.filter(item => item.id !== selectedItem.id));
             toast.success('Deleted successfully!');
         } catch (error) {
@@ -65,7 +65,7 @@ const AllFirstAid = () => {
             formData.append('source', editedSource);
             formData.append('image', editedImage);
 
-            const response = await axios.patch(`http://localhost:3000/admin/first_aids/${selectedItem.id}`, formData, {
+            const response = await axios.patch(`https://hakime-mongodb-3.onrender.com/admin/first_aids/${selectedItem.id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -120,7 +120,7 @@ const AllFirstAid = () => {
                 {firstAidData.map((item) => (
                     <div key={item.id} className="bg-white rounded-lg shadow-md overflow-hidden">
                         <img
-                            src={`http://localhost:3000/${item.image}`}
+                            src={`https://hakime-mongodb-3.onrender.com/${item.image}`}
                             alt={item.title}
                             className="w-full h-48 object-cover"
                         />

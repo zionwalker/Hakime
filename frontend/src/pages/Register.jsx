@@ -23,7 +23,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3000/auth/register', formData);
+      const response = await axios.post('https://hakime-mongodb-3.onrender.com/auth/register', formData);
       console.log('User registered successfully:', response.data);
       
 

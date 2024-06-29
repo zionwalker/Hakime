@@ -18,7 +18,7 @@ const ArticleForm = () => {
     const fetchRecentPosts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/admin/getAllpost",
+          "https://hakime-mongodb-3.onrender.com/admin/getAllpost",
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -69,7 +69,7 @@ const ArticleForm = () => {
       formDataToSend.append("content", formData.content);
       formDataToSend.append("image", formData.image);
 
-      await axios.post("http://localhost:3000/admin/posts", formDataToSend, {
+      await axios.post("https://hakime-mongodb-3.onrender.com/admin/posts", formDataToSend, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

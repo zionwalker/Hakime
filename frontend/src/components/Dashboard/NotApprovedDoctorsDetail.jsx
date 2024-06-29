@@ -10,7 +10,7 @@ const NotApprovedDoctorDetail = () => {
   useEffect(() => {
     const fetchDoctor = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/admin/getnot_ApprovedDoctor/${id}`, {
+        const response = await axios.get(`https://hakime-mongodb-3.onrender.com/admin/getnot_ApprovedDoctor/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`, 
           },

@@ -8,12 +8,12 @@ const DoctorDetails = ({ doctorId }) => {
   const [doctor, setDoctor] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [tab, setTab] = useState('about'); // Initialize tab state
+  const [tab, setTab] = useState('about'); 
 
   useEffect(() => {
     const fetchDoctorProfile = async () => {
       try {
-        const response = await axios.get(`/doctor/${doctorId}`);
+        const response = await axios.get(`https://hakime-mongodb-3.onrender.com/user/getDoctor/${id}`);
         setDoctor(response.data);
         setLoading(false);
       } catch (error) {
@@ -35,7 +35,7 @@ const DoctorDetails = ({ doctorId }) => {
         {doctor.name}
           <div className='md:col-span-2'>
             <div className='flex items-center gap-6 p-6 bg-white shadow-lg rounded-lg'>
-              <img src={`http://localhost:3000/${doctor.image}`} alt="" className="w-32 h-32 rounded-full object-cover" />
+              <img src={`https://hakime-mongodb-3.onrender.com/${doctor.image}`} alt="" className="w-32 h-32 rounded-full object-cover" />
               <div>
                 <span className='bg-[#CCF0F3] text-BlueColor py-1 px-6 lg:py-2 lg:px-6 text-[12px] leading-4 lg:text-[16px] lg:leading-7 font-semibold rounded'>
                   {doctor.specialization}

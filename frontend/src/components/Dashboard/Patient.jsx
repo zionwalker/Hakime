@@ -9,7 +9,7 @@ const Patient = () => {
   useEffect(() => {
     const fetchPatients = async () => {
       try {
-        const response = await fetch('http://localhost:3000/Admin/getAllPatient', {
+        const response = await fetch('https://hakime-mongodb-3.onrender.com/Admin/getAllPatient', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           }

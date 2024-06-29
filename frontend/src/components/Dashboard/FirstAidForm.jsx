@@ -30,7 +30,7 @@ const FirstAidForm = () => {
         data.append('image', formData.image);
 
         try {
-            const response = await axios.post('http://localhost:3000/admin/first_aids', data, {
+            const response = await axios.post('https://hakime-mongodb-3.onrender.com/admin/first_aids', data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,

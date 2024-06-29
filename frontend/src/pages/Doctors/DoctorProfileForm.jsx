@@ -61,7 +61,7 @@ const DoctorProfileCompletion = () => {
       });
       formDataObj.append("userId", userId);
       const response = await axios.post(
-        `http://localhost:3000/doctor/completeProfile/${step}`,
+        `https://hakime-mongodb-3.onrender.com/doctor/completeProfile/${step}`,
         formDataObj,
         {
           headers: {

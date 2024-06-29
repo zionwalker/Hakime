@@ -10,7 +10,7 @@ const AllDoctor = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await fetch('http://localhost:3000/admin/getAllDoctor', {
+        const response = await fetch('https://hakime-mongodb-3.onrender.com/admin/getAllDoctor', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           }
@@ -39,7 +39,7 @@ const AllDoctor = () => {
 
   const deactivateDoctor = async (doctorId) => {
     try {
-      const response = await fetch(`http://localhost:3000/admin/deactivateDoctor/${doctorId}`, {
+      const response = await fetch(`https://hakime-mongodb-3.onrender.com/admin/deactivateDoctor/${doctorId}`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -56,7 +56,7 @@ const AllDoctor = () => {
 
   const disapproveDoctor = async (doctorId) => {
     try {
-      const response = await fetch(`http://localhost:3000/admin/dis-approveDoctor/${doctorId}`, {
+      const response = await fetch(`https://hakime-mongodb-3.onrender.com/admin/dis-approveDoctor/${doctorId}`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

@@ -16,7 +16,7 @@ const Doctor = ({ doctor }) => {
     <div className="p-3 lg:p-5 bg-white rounded-lg shadow-md flex flex-col justify-between">
       <div className="relative w-full h-44 lg:h-52">
         <div className="bg-gray-200 rounded-full w-28 h-28 lg:w-36 lg:h-36 absolute top-0 left-0 right-0 bottom-0 m-auto overflow-hidden">
-          <img src={`http://localhost:3000/${doctor.image}`} className="object-cover w-full h-full rounded-full" alt={name} />
+          <img src={`https://hakime-mongodb-3.onrender.com/${doctor.image}`} className="object-cover w-full h-full rounded-full" alt={name} />
         </div>
       </div>
       <div className="mt-4 lg:mt-6">

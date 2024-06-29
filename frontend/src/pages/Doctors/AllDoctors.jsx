@@ -10,7 +10,7 @@ const AllDoctors = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/user/getAllDoctor');
+        const response = await axios.get('https://hakime-mongodb-3.onrender.com/user/getAllDoctor');
         setDoctors(response.data);
         setLoading(false);
       } catch (error) {

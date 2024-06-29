@@ -17,14 +17,14 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const patientsResponse = await axios.get('http://localhost:3000/admin/getPatient_Count', {
+        const patientsResponse = await axios.get('https://hakime-mongodb-3.onrender.com/admin/getPatient_Count', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           }
         });
         setTotalPatients(patientsResponse.data.total);
 
-        const doctorsResponse = await axios.get('http://localhost:3000/admin/getDoctors_Count', {
+        const doctorsResponse = await axios.get('https://hakime-mongodb-3.onrender.com/admin/getDoctors_Count', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           }

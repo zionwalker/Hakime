@@ -11,7 +11,7 @@ const NotApprovedDoctors = () => {
   useEffect(() => {
     const fetchNotApprovedDoctors = async () => {
       try {
-        const response = await fetch('http://localhost:3000/admin/getnot_ApprovedDoctor', {
+        const response = await fetch('https://hakime-mongodb-3.onrender.com/admin/getnot_ApprovedDoctor', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           }
@@ -40,7 +40,7 @@ const NotApprovedDoctors = () => {
 
   const approveDoctor = async (doctorId) => {
     try {
-      const response = await fetch(`http://localhost:3000/admin/approveDoctor/${doctorId}`, {
+      const response = await fetch(`https://hakime-mongodb-3.onrender.com/admin/approveDoctor/${doctorId}`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

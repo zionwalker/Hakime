@@ -49,7 +49,7 @@ const AllArticle = () => {
         throw new Error("Failed to delete article");
       }
       // Filter out the deleted article from the state
-      setArticles(articles.filter((article) => article.id !== id));
+      setArticles(articles.filter((article) => article._id !== id));
     } catch (error) {
       console.error("Error deleting article:", error);
     }
@@ -76,7 +76,7 @@ const AllArticle = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `https://hakime-mongodb-3.onrender.com/admin/posts/${currentArticle.id}`,
+        `https://hakime-mongodb-3.onrender.com/admin/posts/${currentArticle._id}`,
         {
           method: "PUT",
           headers: {
@@ -92,7 +92,7 @@ const AllArticle = () => {
       const updatedArticle = await response.json();
       setArticles(
         articles.map((article) =>
-          article.id === updatedArticle.id ? updatedArticle : article
+          article._id === updatedArticle._id ? updatedArticle : article
         )
       );
       closeModal();
@@ -104,35 +104,28 @@ const AllArticle = () => {
   return (
     <>
       <div className="max-w-6xl mx-auto mt-10">
-        <div class="text-headingColor justify-center">
-          <h3 class="text-headingColor text-center text-[30px] leading-3 font-semibold">
+        <div className="text-headingColor justify-center">
+          <h3 className="text-headingColor text-center text-[30px] leading-3 font-semibold">
             Hakime Posts
           </h3>
-          <hr class="mt-6 shadow-sm bg-orange-200 py-1 rounded-md w-1/6 mx-auto" />
+          <hr className="mt-6 shadow-sm bg-orange-200 py-1 rounded-md w-1/6 mx-auto" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center">
-          {/* Render articles */}
           {articles.map((article, index) => (
             <div
-              key={index}
+              key={article._id}
               className="bg-white text-gray-900 p-4 rounded-md shadow-lg transition-transform transform hover:scale-105"
             >
-              {/* Render article image */}
               <div className="relative h-48 overflow-hidden rounded-md mb-2">
                 <img
-                  src={`https://hakime-mongodb-3.onrender.com/${article.image}`} // Article image
+                  src={`https://hakime-mongodb-3.onrender.com/${article.image}`}
                   alt={article.title}
                   className="w-full h-full object-cover"
                 />
               </div>
-              {/* Render article title */}
               <h3 className="text-lg font-bold mb-1">{article.title}</h3>
-              {/* Render article subtitle */}
-              <h4 className="text-md font-semibold mb-1">
-                {article.sub_title}
-              </h4>
-              {/* Render article content */}
+              <h4 className="text-md font-semibold mb-1">{article.sub_title}</h4>
               <p
                 className={`text-sm mb-2 ${
                   expandedArticleIndex === index ? "" : "line-clamp-3"
@@ -140,7 +133,6 @@ const AllArticle = () => {
               >
                 {article.content}
               </p>
-              {/* Read more/less button */}
               <div className="flex justify-center space-x-2">
                 <button
                   onClick={() => toggleExpansion(index)}
@@ -148,7 +140,6 @@ const AllArticle = () => {
                 >
                   {expandedArticleIndex === index ? "Read Less" : "Read More"}
                 </button>
-                {/* Edit and Delete buttons */}
                 <button
                   onClick={() => openEditModal(article)}
                   className="py-1 px-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition-colors text-sm"
@@ -156,7 +147,7 @@ const AllArticle = () => {
                   Edit
                 </button>
                 <button
-                  onClick={() => deleteArticle(article.id)}
+                  onClick={() => deleteArticle(article._id)}
                   className="py-1 px-2 bg-red-500 text-white rounded hover:bg-red-700 transition-colors text-sm"
                 >
                   Delete
@@ -164,14 +155,12 @@ const AllArticle = () => {
               </div>
             </div>
           ))}
-          {/* Placeholder content when no articles available */}
           {articles.length === 0 && (
             <p className="text-center text-gray-600">No articles available</p>
           )}
         </div>
       </div>
 
-      {/* Edit Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-4 rounded-md shadow-lg">

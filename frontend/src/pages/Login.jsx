@@ -6,41 +6,27 @@ import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from "./AuthContext";
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post(
         "https://hakime-mongodb-3.onrender.com/auth/login",
         formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        { headers: { "Content-Type": "application/json" } }
       );
       const { token, role } = response.data;
       login(token);
-      localStorage.setItem("userRole", role); 
-      setTimeout(() => {
-        navigate("/home");
-      }, 100);
+      localStorage.setItem("userRole", role);
+      setTimeout(() => navigate("/home"), 100);
     } catch (error) {
       console.error("Error logging in user:", error);
       toast.error("Login failed. Please try again.");
@@ -51,15 +37,10 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="max-w-md w-full bg-white shadow-lg rounded-lg overflow-hidden">
         <div className="px-6 py-8">
-          <h2 className="text-3xl font-semibold text-gray-800 text-center">
-            Login
-          </h2>
+          <h2 className="text-3xl font-semibold text-gray-800 text-center">Login</h2>
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
-              >
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email
               </label>
               <input
@@ -75,10 +56,7 @@ const Login = () => {
               />
             </div>
             <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
-              >
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Password
               </label>
               <input
@@ -104,10 +82,7 @@ const Login = () => {
             <div className="mt-4 text-center">
               <p className="text-sm text-gray-600">
                 Don't have an account?{" "}
-                <Link
-                  to="/register"
-                  className="text-indigo-600 hover:underline"
-                >
+                <Link to="/register" className="text-indigo-600 hover:underline">
                   Register here
                 </Link>
               </p>

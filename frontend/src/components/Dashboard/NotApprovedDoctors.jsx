@@ -11,7 +11,7 @@ const NotApprovedDoctors = () => {
   useEffect(() => {
     const fetchNotApprovedDoctors = async () => {
       try {
-        const response = await fetch('https://hakime-mongodb-3.onrender.com/admin/getnot_ApprovedDoctor', {
+        const response = await fetch('https://hakime-mongodb-3.onrender.com/admin/get_notApprovedDoctor', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           }
@@ -20,8 +20,12 @@ const NotApprovedDoctors = () => {
           throw new Error('Failed to fetch not approved doctors');
         }
         const data = await response.json();
-
         console.log('Fetched data:', data);
+
+        // Check the structure of the fetched data
+        if (Array.isArray(data) && data.length > 0) {
+          console.log('Sample doctor data:', data[0]);
+        }
 
         setDoctors(data);
       } catch (err) {
@@ -47,9 +51,11 @@ const NotApprovedDoctors = () => {
         }
       });
       if (!response.ok) {
-        throw new Error('Failed to approve doctor');
+        const errorData = await response.json();
+        throw new Error(`Failed to approve doctor: ${errorData.message}`);
       }
-      setDoctors(doctors.map(doc => doc.id === doctorId ? { ...doc, status: 'Approved' } : doc));
+      const updatedDoctor = await response.json();
+      setDoctors(doctors.map(doc => doc._id === doctorId ? { ...doc, status: 'Approved' } : doc));
     } catch (err) {
       console.error('Error approving doctor:', err);
     }
@@ -78,23 +84,23 @@ const NotApprovedDoctors = () => {
         </TableHead>
         <TableBody>
           {doctors.map((doctor) => (
-            <TableRow key={doctor.id}>
-              <TableCell>{doctor.id}</TableCell>
-              <TableCell>{doctor.User ? doctor.User.name : 'N/A'}</TableCell>
-              <TableCell>{doctor.User ? doctor.User.email : 'N/A'}</TableCell>
+            <TableRow key={doctor._id}>
+              <TableCell>{doctor._id}</TableCell>
+              <TableCell>{doctor.userId?.name || 'N/A'}</TableCell>
+              <TableCell>{doctor.userId?.email || 'N/A'}</TableCell>
               <TableCell>{doctor.address || 'N/A'}</TableCell>
               <TableCell>{doctor.status}</TableCell>
               <TableCell>
-              <button 
+                <button 
                   className="bg-blue-500 text-white py-1 px-3 rounded transition duration-300 ease-in-out hover:bg-blue-600 transform hover:-translate-y-1"
-                  onClick={() => viewProfile(doctor.id)}
+                  onClick={() => viewProfile(doctor._id)}
                 >
                   View Profile
                 </button>
                 <Button 
                   variant="contained" 
                   color="secondary" 
-                  onClick={() => approveDoctor(doctor.id)}
+                  onClick={() => approveDoctor(doctor._id)}
                   style={{ marginLeft: '10px' }}
                 >
                   Approve

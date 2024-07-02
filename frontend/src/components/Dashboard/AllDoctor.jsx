@@ -84,7 +84,6 @@ const AllDoctor = () => {
       <table className="min-w-full bg-white shadow-md rounded">
         <thead>
           <tr className="bg-gray-200 text-gray-700">
-            <th className="py-2 px-4 border-b">ID</th>
             <th className="py-2 px-4 border-b">Name</th>
             <th className="py-2 px-4 border-b">Email</th>
             <th className="py-2 px-4 border-b">Address</th>
@@ -94,23 +93,23 @@ const AllDoctor = () => {
         </thead>
         <tbody>
           {doctors.map((doctor) => (
-            <tr key={doctor.id} className="hover:bg-gray-100">
-              <td className="py-2 px-4 border-b">{doctor.id}</td>
-              <td className="py-2 px-4 border-b">{doctor.User.name}</td>
-              <td className="py-2 px-4 border-b">{doctor.User.email}</td>
+            <tr key={doctor._id} className="hover:bg-gray-100">
+             
+              <td className="py-2 px-4 border-b">{doctor.userId?.name || 'N/A'}</td>
+              <td className="py-2 px-4 border-b">{doctor.userId?.email || 'N/A'}</td>
               <td className="py-2 px-4 border-b">{doctor.address}</td>
               <td className="py-2 px-4 border-b">{doctor.status}</td>
               <td className="py-2 px-4 border-b flex space-x-2">
                 <button 
                   className="bg-blue-500 text-white py-1 px-3 rounded transition duration-300 ease-in-out hover:bg-blue-600 transform hover:-translate-y-1"
-                  onClick={() => viewProfile(doctor.id)}
+                  onClick={() => viewProfile(doctor._id)}
                 >
                   View Profile
                 </button>
                 
                 <button 
                   className="bg-yellow-500 text-white py-1 px-3 rounded transition duration-300 ease-in-out hover:bg-yellow-600 transform hover:-translate-y-1"
-                  onClick={() => disapproveDoctor(doctor.id)}
+                  onClick={() => disapproveDoctor(doctor._id)}
                 >
                   Dis-Approve
                 </button>

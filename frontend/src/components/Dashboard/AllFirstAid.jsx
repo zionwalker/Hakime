@@ -29,7 +29,7 @@ const AllFirstAid = () => {
         fetchData();
     }, []); 
 
-    const handleEdit = async (item) => {
+    const handleEdit = (item) => {
         setSelectedItem(item); 
         setEditedTitle(item.title);
         setEditedContent(item.content);
@@ -37,15 +37,15 @@ const AllFirstAid = () => {
         setShowEditModal(true); 
     };
     
-    const handleDelete = async (id) => {
+    const handleDelete = (id) => {
         setSelectedItem(id); 
         setShowDeleteModal(true); 
     };
 
     const confirmDelete = async () => {
         try {
-            await axios.delete(`https://hakime-mongodb-3.onrender.com/admin/first_aids/${selectedItem.id}`);
-            setFirstAidData(firstAidData.filter(item => item.id !== selectedItem.id));
+            await axios.delete(`https://hakime-mongodb-3.onrender.com/admin/first_aids/${selectedItem}`);
+            setFirstAidData(firstAidData.filter(item => item._id !== selectedItem));
             toast.success('Deleted successfully!');
         } catch (error) {
             console.error('Error deleting item:', error);
@@ -55,7 +55,6 @@ const AllFirstAid = () => {
             setShowDeleteModal(false); 
         }
     };
-    
 
     const confirmEdit = async () => {
         try {
@@ -63,23 +62,30 @@ const AllFirstAid = () => {
             formData.append('title', editedTitle);
             formData.append('content', editedContent);
             formData.append('source', editedSource);
-            formData.append('image', editedImage);
+            if (editedImage) {
+                formData.append('image', editedImage);
+            }
 
-            const response = await axios.patch(`https://hakime-mongodb-3.onrender.com/admin/first_aids/${selectedItem.id}`, formData, {
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ', ' + pair[1]);
+            }
+
+            const response = await axios.patch(`https://hakime-mongodb-3.onrender.com/admin/first_aids/${selectedItem._id}`, formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
+                    'Content-Type': 'multipart/form-data',
+                },
             });
 
-            // Update the edited item in the state with the response data
+            console.log('Edit response:', response.data);
+
             const updatedItem = {
-                id: selectedItem.id,
+                ...selectedItem,
                 title: editedTitle,
                 content: editedContent,
                 source: editedSource,
-                image: response.data.image, // Assuming the API returns the updated image path
+                image: response.data.image || selectedItem.image,
             };
-            setFirstAidData(firstAidData.map(item => (item.id === selectedItem.id ? updatedItem : item)));
+            setFirstAidData(firstAidData.map(item => (item._id === selectedItem._id ? updatedItem : item)));
 
             toast.success('Edited successfully!');
         } catch (error) {
@@ -118,7 +124,7 @@ const AllFirstAid = () => {
             <ToastContainer />
             <div className="grid gap-8 grid-cols-1 md:grid-cols-2">
                 {firstAidData.map((item) => (
-                    <div key={item.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div key={item._id} className="bg-white rounded-lg shadow-md overflow-hidden">
                         <img
                             src={`https://hakime-mongodb-3.onrender.com/${item.image}`}
                             alt={item.title}
@@ -144,7 +150,7 @@ const AllFirstAid = () => {
                                 </button>
                                 <button
                                     className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg"
-                                    onClick={() => handleDelete(item)}
+                                    onClick={() => handleDelete(item._id)}
                                 >
                                     Delete
                                 </button>
@@ -172,7 +178,7 @@ const AllFirstAid = () => {
                             type="text"
                             value={editedTitle}
                             onChange={(e) => setEditedTitle(e.target.value)}
-                            className="w-full                            p-2 border border-gray-300 rounded mb-4"
+                            className="w-full p-2 border border-gray-300 rounded mb-4"
                             placeholder="Title"
                         />
                         <textarea
@@ -205,4 +211,3 @@ const AllFirstAid = () => {
 };
 
 export default AllFirstAid;
-

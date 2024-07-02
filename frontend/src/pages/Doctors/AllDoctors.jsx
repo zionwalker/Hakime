@@ -10,7 +10,9 @@ const AllDoctors = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
+        console.log('Fetching doctors...');
         const response = await axios.get('https://hakime-mongodb-3.onrender.com/user/getAllDoctor');
+        console.log('Response:', response.data);
         setDoctors(response.data);
         setLoading(false);
       } catch (error) {
@@ -28,9 +30,13 @@ const AllDoctors = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-12">
-      {doctors.map((doctor) => (
-        <Doctor key={doctor.id} doctor={doctor} />
-      ))}
+      {doctors.length > 0 ? (
+        doctors.map((doctor) => (
+          <Doctor key={doctor.id} doctor={doctor} />
+        ))
+      ) : (
+        <div>No doctors found.</div>
+      )}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, CircularProgress, Snackbar } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
 
 const Patient = () => {
   const [patients, setPatients] = useState([]);
@@ -9,18 +10,19 @@ const Patient = () => {
   useEffect(() => {
     const fetchPatients = async () => {
       try {
-        const response = await fetch('https://hakime-mongodb-3.onrender.com/Admin/getAllPatient', {
+        const response = await fetch('https://hakime-mongodb-3.onrender.com/admin/getAllPatient', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           }
         });
+
         if (!response.ok) {
-          throw new Error('Failed to fetch patients');
+          const errorDetails = await response.text();
+          throw new Error(`Failed to fetch patients: ${response.statusText}, Details: ${errorDetails}`);
         }
+
         const data = await response.json();
         console.log('Fetched data:', data);
-
-        
         setPatients(data);
       } catch (err) {
         setError(err.message);
@@ -37,11 +39,17 @@ const Patient = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}><CircularProgress /></div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return (
+      <Snackbar open={true} autoHideDuration={6000}>
+        <MuiAlert elevation={6} variant="filled" severity="error">
+          Error: {error}
+        </MuiAlert>
+      </Snackbar>
+    );
   }
 
   return (
@@ -53,20 +61,18 @@ const Patient = () => {
             <TableCell>Name</TableCell>
             <TableCell>Email</TableCell>
             <TableCell>Phone Number</TableCell>
-            <TableCell>Image</TableCell>
             <TableCell>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {patients.map((patient) => (
-            <TableRow key={patient.id}>
-              <TableCell>{patient.id}</TableCell>
-              <TableCell>{patient.User.name}</TableCell>
-              <TableCell>{patient.User.email}</TableCell>
-              <TableCell>{patient.User.phone_number}</TableCell>
-              <TableCell>{patient.image}</TableCell>
+            <TableRow key={patient._id}>
+              <TableCell>{patient._id}</TableCell>
+              <TableCell>{patient.userId?.name || 'N/A'}</TableCell>
+              <TableCell>{patient.userId?.email || 'N/A'}</TableCell>
+              <TableCell>{patient.userId?.phone_number || 'N/A'}</TableCell>
               <TableCell>
-                <Button variant="contained" color="primary" onClick={() => viewProfile(patient.id)}>View Profile</Button>
+                <Button variant="contained" color="primary" onClick={() => viewProfile(patient._id)}>View Profile</Button>
               </TableCell>
             </TableRow>
           ))}
